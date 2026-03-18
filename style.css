@@ -211,6 +211,48 @@ h1,h2,h3,h4,h5,h6 { font-weight: 700; line-height: 1.15; }
   color: var(--yellow) !important;
 }
 
+/* Auth User Badge in Navbar */
+.nav-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-pill);
+}
+.nav-user-name {
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.nav-user-logout {
+  color: rgba(255,255,255,0.7) !important;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 2px 8px;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+.nav-user-logout:hover {
+  color: #e74c3c !important;
+}
+.mobile-user-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+  color: var(--yellow);
+  font-weight: 600;
+}
+.mobile-user-badge a {
+  font-size: 0.85rem;
+}
+
 /* Mobile Menu Toggle */
 .nav-toggle {
   display: none;
