@@ -23,7 +23,7 @@ function loadAuth() {
     if (!localStorage.getItem('tutty_users')) {
       // Seed with default admin
       const defaultUsers = [
-        { email: 'admin@demo.local', name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'admin123', cnpj: '00.000.000/0000-00' }
+        { email: 'admin@demo.local', name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' }
       ];
       localStorage.setItem('tutty_users', JSON.stringify(defaultUsers));
     }
