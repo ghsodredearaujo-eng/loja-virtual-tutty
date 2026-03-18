@@ -2725,6 +2725,64 @@ img {
   margin-bottom: 16px;
 }
 
+.orders-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+.orders-empty .material-icons-outlined {
+  margin-bottom: 16px;
+}
+.orders-empty h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+.orders-empty p {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.account-panel {
+  padding: 8px 0;
+}
+.account-welcome h2 {
+  font-size: 1.5rem;
+  color: #1B5E20;
+  margin-bottom: 8px;
+}
+.account-welcome p {
+  color: #666;
+  margin-bottom: 24px;
+}
+.account-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.account-info-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid #eee;
+  transition: transform 0.2s;
+}
+.account-info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.account-info-card h4 {
+  margin: 12px 0 4px;
+  color: #333;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.account-info-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
 .account-grid {
   display: grid;
   grid-template-columns: 240px 1fr;
