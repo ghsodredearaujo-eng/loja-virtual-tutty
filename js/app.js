@@ -119,6 +119,12 @@ function showPage(pageId) {
   if (pageId === 'admin') {
     initAdmin();
   }
+  if (pageId === 'orders') {
+    renderOrders();
+  }
+  if (pageId === 'account') {
+    renderAccount();
+  }
 }
 
 // --- Product Card Rendering ---
@@ -217,10 +223,11 @@ function renderCatalog(filter) {
   let products = [...PRODUCTS];
 
   // Apply checkbox filters
-  const checkedLines = getCheckedValues('.filter-group:nth-child(1) input[type="checkbox"]');
-  const checkedFlavors = getCheckedValues('.filter-group:nth-child(2) input[type="checkbox"]');
-  const checkedVolumes = getCheckedValues('.filter-group:nth-child(3) input[type="checkbox"]');
-  const checkedOperations = getCheckedValues('.filter-group:nth-child(4) input[type="checkbox"]');
+  const filterGroups = document.querySelectorAll('.filters-sidebar .filter-group');
+  const checkedLines = getCheckedFromGroup(filterGroups[0]);
+  const checkedFlavors = getCheckedFromGroup(filterGroups[1]);
+  const checkedVolumes = getCheckedFromGroup(filterGroups[2]);
+  const checkedOperations = getCheckedFromGroup(filterGroups[3]);
 
   if (checkedLines.length > 0) {
     products = products.filter(p => checkedLines.includes(p.line));
@@ -274,6 +281,13 @@ function getCheckedValues(selector) {
     .map(cb => cb.value);
 }
 
+function getCheckedFromGroup(group) {
+  if (!group) return [];
+  return Array.from(group.querySelectorAll('input[type="checkbox"]'))
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+}
+
 function applyFilters() {
   renderCatalog();
 }
@@ -289,7 +303,8 @@ function filterCatalog(line) {
   showPage('catalog');
   setTimeout(() => {
     clearFilters();
-    const checkboxes = document.querySelectorAll('.filter-group:nth-child(1) input[type="checkbox"]');
+    const filterGroups = document.querySelectorAll('.filters-sidebar .filter-group');
+    const checkboxes = filterGroups[0] ? filterGroups[0].querySelectorAll('input[type="checkbox"]') : [];
     checkboxes.forEach(cb => {
       if (cb.value === line) cb.checked = true;
     });
@@ -775,6 +790,78 @@ function placeOrder() {
     </div>
   `;
   document.body.appendChild(modal);
+}
+
+// --- Orders ---
+function renderOrders() {
+  const container = document.getElementById('ordersContent');
+  if (!container) return;
+  if (isLoggedIn()) {
+    container.innerHTML = `
+      <div class="orders-empty">
+        <span class="material-icons-outlined" style="font-size:64px;color:#ccc">receipt_long</span>
+        <h3>Nenhum pedido realizado</h3>
+        <p>Você ainda não fez nenhum pedido. Explore nosso catálogo e faça seu primeiro pedido!</p>
+        <button class="btn btn-primary" onclick="showPage('catalog')">
+          <span class="material-icons-outlined">shopping_bag</span> Ir para o Catálogo
+        </button>
+      </div>`;
+  } else {
+    container.innerHTML = `
+      <div class="login-prompt">
+        <span class="material-icons-outlined">lock</span>
+        <h3>Faça login para ver seus pedidos</h3>
+        <p>Acesse sua conta para visualizar o histórico de pedidos, repetir compras e acompanhar entregas.</p>
+        <button class="btn btn-primary" onclick="showPage('login')">Fazer Login</button>
+        <p class="mt-1">Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
+      </div>`;
+  }
+}
+
+// --- Account ---
+function renderAccount() {
+  const container = document.querySelector('.account-content');
+  if (!container) return;
+  if (isLoggedIn()) {
+    container.innerHTML = `
+      <div class="account-panel">
+        <div class="account-welcome">
+          <h2>Olá, ${currentUser.name}!</h2>
+          <p>Bem-vindo à sua área de cliente. Gerencie seus pedidos, endereços e dados da empresa.</p>
+        </div>
+        <div class="account-info-grid">
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#1B5E20">business</span>
+            <h4>Empresa</h4>
+            <p>${currentUser.company || 'Tutty Sucos'}</p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#E65100">email</span>
+            <h4>E-mail</h4>
+            <p>${currentUser.email}</p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#2E7D32">verified_user</span>
+            <h4>Status</h4>
+            <p><span class="badge badge-approved">${currentUser.role === 'admin' ? 'Administrador' : 'Aprovado'}</span></p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#F57C00">shopping_cart</span>
+            <h4>Pedidos</h4>
+            <p>0 pedidos realizados</p>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    container.innerHTML = `
+      <div class="login-prompt">
+        <span class="material-icons-outlined">lock</span>
+        <h3>Faça login para acessar sua conta</h3>
+        <p>Gerencie pedidos, listas de compra, endereços e equipamentos em um só lugar.</p>
+        <button class="btn btn-primary" onclick="showPage('login')">Fazer Login</button>
+        <p class="mt-1">Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
+      </div>`;
+  }
 }
 
 // --- Offers ---
