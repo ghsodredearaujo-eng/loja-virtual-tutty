@@ -276,5 +276,17 @@
   </a>
 
   <script src="script.js"></script>
+  <script>
+    // Hide prices if user is not registered/approved
+    (function() {
+      var user = null;
+      try { user = JSON.parse(localStorage.getItem('tutty_current_user')); } catch(e) {}
+      if (!user || user.role === 'pending') {
+        document.querySelectorAll('.product-price').forEach(function(el) {
+          el.innerHTML = '<a href="marketplace.html" style="color:#0B5C28;font-weight:600;font-size:0.85rem">Cadastre-se para ver preços</a>';
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
