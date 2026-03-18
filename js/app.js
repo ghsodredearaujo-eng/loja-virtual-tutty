@@ -819,39 +819,26 @@ function renderOrders() {
 }
 
 // --- Account ---
+let currentAccountTab = 'painel';
+
+function switchAccountTab(tab, linkEl) {
+  currentAccountTab = tab;
+  // Update active link
+  document.querySelectorAll('.account-nav a').forEach(a => a.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  renderAccountContent();
+}
+
 function renderAccount() {
   const container = document.querySelector('.account-content');
   if (!container) return;
   if (isLoggedIn()) {
-    container.innerHTML = `
-      <div class="account-panel">
-        <div class="account-welcome">
-          <h2>Olá, ${currentUser.name}!</h2>
-          <p>Bem-vindo à sua área de cliente. Gerencie seus pedidos, endereços e dados da empresa.</p>
-        </div>
-        <div class="account-info-grid">
-          <div class="account-info-card">
-            <span class="material-icons-outlined" style="font-size:36px;color:#1B5E20">business</span>
-            <h4>Empresa</h4>
-            <p>${currentUser.company || 'Tutty Sucos'}</p>
-          </div>
-          <div class="account-info-card">
-            <span class="material-icons-outlined" style="font-size:36px;color:#E65100">email</span>
-            <h4>E-mail</h4>
-            <p>${currentUser.email}</p>
-          </div>
-          <div class="account-info-card">
-            <span class="material-icons-outlined" style="font-size:36px;color:#2E7D32">verified_user</span>
-            <h4>Status</h4>
-            <p><span class="badge badge-approved">${currentUser.role === 'admin' ? 'Administrador' : 'Aprovado'}</span></p>
-          </div>
-          <div class="account-info-card">
-            <span class="material-icons-outlined" style="font-size:36px;color:#F57C00">shopping_cart</span>
-            <h4>Pedidos</h4>
-            <p>0 pedidos realizados</p>
-          </div>
-        </div>
-      </div>`;
+    currentAccountTab = 'painel';
+    // Reset active nav
+    document.querySelectorAll('.account-nav a').forEach((a, i) => {
+      a.classList.toggle('active', i === 0);
+    });
+    renderAccountContent();
   } else {
     container.innerHTML = `
       <div class="login-prompt">
@@ -862,6 +849,502 @@ function renderAccount() {
         <p class="mt-1">Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
       </div>`;
   }
+}
+
+function renderAccountContent() {
+  const container = document.querySelector('.account-content');
+  if (!container || !isLoggedIn()) return;
+
+  const userData = JSON.parse(localStorage.getItem('tutty_users') || '[]');
+  const user = userData.find(u => u.email === currentUser.email) || currentUser;
+  const savedAddresses = JSON.parse(localStorage.getItem('tutty_addresses_' + currentUser.email) || '[]');
+  const savedLists = JSON.parse(localStorage.getItem('tutty_lists_' + currentUser.email) || '[]');
+  const savedRecurring = JSON.parse(localStorage.getItem('tutty_recurring_' + currentUser.email) || '[]');
+  const savedEquipments = JSON.parse(localStorage.getItem('tutty_equipments_' + currentUser.email) || '[]');
+
+  const tabs = {
+    painel: `
+      <div class="account-panel">
+        <div class="account-welcome">
+          <h2>Olá, ${currentUser.name}!</h2>
+          <p>Bem-vindo à sua área de cliente. Gerencie seus pedidos, endereços e dados da empresa.</p>
+        </div>
+        <div class="account-info-grid">
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#1B5E20">business</span>
+            <h4>Empresa</h4>
+            <p>${currentUser.company || '—'}</p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#E65100">email</span>
+            <h4>E-mail</h4>
+            <p>${currentUser.email}</p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#2E7D32">verified_user</span>
+            <h4>Status</h4>
+            <p><span class="badge badge-approved">${currentUser.role === 'admin' ? 'Administrador' : 'Cliente Aprovado'}</span></p>
+          </div>
+          <div class="account-info-card">
+            <span class="material-icons-outlined" style="font-size:36px;color:#F57C00">shopping_cart</span>
+            <h4>Pedidos</h4>
+            <p>0 pedidos realizados</p>
+          </div>
+        </div>
+        <div class="account-quick-actions">
+          <h3>Acesso Rápido</h3>
+          <div class="quick-actions-grid">
+            <button class="quick-action-btn" onclick="showPage('catalog')">
+              <span class="material-icons-outlined">shopping_bag</span>
+              <span>Fazer Pedido</span>
+            </button>
+            <button class="quick-action-btn" onclick="switchAccountTab('listas', document.querySelectorAll('.account-nav a')[2])">
+              <span class="material-icons-outlined">list_alt</span>
+              <span>Minhas Listas</span>
+            </button>
+            <button class="quick-action-btn" onclick="switchAccountTab('enderecos', document.querySelectorAll('.account-nav a')[4])">
+              <span class="material-icons-outlined">location_on</span>
+              <span>Endereços</span>
+            </button>
+            <button class="quick-action-btn" onclick="switchAccountTab('empresa', document.querySelectorAll('.account-nav a')[6])">
+              <span class="material-icons-outlined">settings</span>
+              <span>Dados da Empresa</span>
+            </button>
+          </div>
+        </div>
+      </div>`,
+
+    pedidos: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">receipt_long</span> Meus Pedidos</h2>
+        </div>
+        <div class="empty-state">
+          <span class="material-icons-outlined">inventory_2</span>
+          <h3>Nenhum pedido realizado</h3>
+          <p>Você ainda não fez nenhum pedido. Explore nosso catálogo e faça seu primeiro pedido!</p>
+          <button class="btn btn-primary" onclick="showPage('catalog')">
+            <span class="material-icons-outlined">shopping_bag</span> Ir para o Catálogo
+          </button>
+        </div>
+      </div>`,
+
+    listas: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">list_alt</span> Listas de Compra</h2>
+          <button class="btn btn-primary btn-sm" onclick="createNewList()">
+            <span class="material-icons-outlined">add</span> Nova Lista
+          </button>
+        </div>
+        <p class="tab-description">Crie listas personalizadas para agilizar suas compras recorrentes.</p>
+        ${savedLists.length > 0 ? `
+          <div class="lists-grid">
+            ${savedLists.map((list, i) => `
+              <div class="list-card">
+                <div class="list-card-header">
+                  <h4>${list.name}</h4>
+                  <span class="list-count">${list.items.length} itens</span>
+                </div>
+                <p class="list-date">Criada em ${list.date}</p>
+                <div class="list-actions">
+                  <button class="btn btn-primary btn-sm" onclick="addListToCart(${i})">
+                    <span class="material-icons-outlined">add_shopping_cart</span> Adicionar ao Carrinho
+                  </button>
+                  <button class="btn btn-outline btn-sm" onclick="deleteList(${i})">
+                    <span class="material-icons-outlined">delete</span>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="empty-state">
+            <span class="material-icons-outlined">playlist_add</span>
+            <h3>Nenhuma lista criada</h3>
+            <p>Crie uma lista de compras para facilitar pedidos recorrentes. Adicione seus produtos favoritos e recompre com um clique.</p>
+            <button class="btn btn-primary" onclick="createNewList()">
+              <span class="material-icons-outlined">add</span> Criar Primeira Lista
+            </button>
+          </div>
+        `}
+      </div>`,
+
+    recorrentes: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">autorenew</span> Pedidos Recorrentes</h2>
+        </div>
+        <p class="tab-description">Configure pedidos automáticos para nunca ficar sem estoque.</p>
+        ${savedRecurring.length > 0 ? `
+          <div class="recurring-list">
+            ${savedRecurring.map((rec, i) => `
+              <div class="recurring-card">
+                <div class="recurring-info">
+                  <h4>${rec.name}</h4>
+                  <p>Frequência: ${rec.frequency} · Próximo: ${rec.nextDate}</p>
+                  <p class="recurring-total">Total estimado: ${formatPrice(rec.total)}</p>
+                </div>
+                <div class="recurring-status">
+                  <span class="badge ${rec.active ? 'badge-approved' : 'badge-pending'}">${rec.active ? 'Ativo' : 'Pausado'}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="empty-state">
+            <span class="material-icons-outlined">event_repeat</span>
+            <h3>Nenhum pedido recorrente</h3>
+            <p>Automatize seus pedidos! Configure a frequência (semanal, quinzenal, mensal) e os produtos serão entregues automaticamente.</p>
+            <div class="recurring-how-it-works">
+              <h4>Como funciona:</h4>
+              <div class="how-steps">
+                <div class="how-step">
+                  <span class="step-icon">1</span>
+                  <p>Faça um pedido no catálogo</p>
+                </div>
+                <div class="how-step">
+                  <span class="step-icon">2</span>
+                  <p>No checkout, marque "Tornar recorrente"</p>
+                </div>
+                <div class="how-step">
+                  <span class="step-icon">3</span>
+                  <p>Escolha a frequência desejada</p>
+                </div>
+                <div class="how-step">
+                  <span class="step-icon">4</span>
+                  <p>Receba automaticamente!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `}
+      </div>`,
+
+    enderecos: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">location_on</span> Endereços de Entrega</h2>
+          <button class="btn btn-primary btn-sm" onclick="showAddressForm()">
+            <span class="material-icons-outlined">add</span> Novo Endereço
+          </button>
+        </div>
+        <p class="tab-description">Gerencie seus endereços de entrega para agilizar os pedidos.</p>
+        <div id="addressFormContainer"></div>
+        ${savedAddresses.length > 0 ? `
+          <div class="addresses-grid">
+            ${savedAddresses.map((addr, i) => `
+              <div class="address-card ${addr.isDefault ? 'address-default' : ''}">
+                ${addr.isDefault ? '<span class="badge badge-approved">Principal</span>' : ''}
+                <h4>${addr.label}</h4>
+                <p>${addr.street}, ${addr.number}</p>
+                <p>${addr.neighborhood} · ${addr.city}/${addr.state}</p>
+                <p>CEP: ${addr.cep}</p>
+                ${addr.complement ? `<p>Complemento: ${addr.complement}</p>` : ''}
+                ${addr.reference ? `<p class="addr-ref">Ref: ${addr.reference}</p>` : ''}
+                <div class="address-actions">
+                  ${!addr.isDefault ? `<button class="btn btn-outline btn-sm" onclick="setDefaultAddress(${i})">Tornar principal</button>` : ''}
+                  <button class="btn btn-outline btn-sm btn-danger" onclick="deleteAddress(${i})">
+                    <span class="material-icons-outlined">delete</span>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="empty-state">
+            <span class="material-icons-outlined">add_location</span>
+            <h3>Nenhum endereço cadastrado</h3>
+            <p>Adicione endereços de entrega para agilizar o processo de compra.</p>
+            <button class="btn btn-primary" onclick="showAddressForm()">
+              <span class="material-icons-outlined">add</span> Adicionar Endereço
+            </button>
+          </div>
+        `}
+      </div>`,
+
+    equipamentos: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">build</span> Equipamentos em Comodato</h2>
+        </div>
+        <p class="tab-description">Equipamentos cedidos pela Tutty Sucos para sua operação em regime de comodato.</p>
+        ${savedEquipments.length > 0 ? `
+          <div class="equipment-list">
+            ${savedEquipments.map(eq => `
+              <div class="equipment-card">
+                <span class="material-icons-outlined equipment-icon">${eq.icon || 'kitchen'}</span>
+                <div class="equipment-info">
+                  <h4>${eq.name}</h4>
+                  <p>Modelo: ${eq.model} · Patrimônio: ${eq.patrimony}</p>
+                  <p>Desde: ${eq.since}</p>
+                </div>
+                <span class="badge badge-approved">${eq.status}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div class="empty-state">
+            <span class="material-icons-outlined">kitchen</span>
+            <h3>Nenhum equipamento em comodato</h3>
+            <p>A Tutty Sucos oferece equipamentos em comodato para clientes com volume recorrente.</p>
+            <div class="equipment-info-box">
+              <h4><span class="material-icons-outlined">info</span> Equipamentos disponíveis:</h4>
+              <ul class="equipment-available">
+                <li><span class="material-icons-outlined">blender</span> <strong>Refresqueiras</strong> — Máquinas de suco para buffets e self-service</li>
+                <li><span class="material-icons-outlined">kitchen</span> <strong>Dispensers refrigerados</strong> — Para cafés da manhã de hotéis</li>
+                <li><span class="material-icons-outlined">countertops</span> <strong>Displays e expositores</strong> — Para pontos de venda</li>
+              </ul>
+              <p class="equipment-note">* Disponibilidade sujeita a análise de volume de compra e contrato mínimo.</p>
+              <button class="btn btn-primary" onclick="requestEquipment()">
+                <span class="material-icons-outlined">mail</span> Solicitar Equipamento
+              </button>
+            </div>
+          </div>
+        `}
+      </div>`,
+
+    empresa: `
+      <div class="account-tab-content">
+        <div class="tab-header">
+          <h2><span class="material-icons-outlined">settings</span> Dados da Empresa</h2>
+        </div>
+        <p class="tab-description">Mantenha seus dados atualizados para emissão de notas fiscais e entregas.</p>
+        <form class="company-form" onsubmit="saveCompanyData(event)">
+          <div class="form-section">
+            <h3><span class="material-icons-outlined">business</span> Informações da Empresa</h3>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>Razão Social</label>
+                <input type="text" value="${user.razaoSocial || user.company || ''}" id="compRazaoSocial" placeholder="Razão Social completa">
+              </div>
+              <div class="form-group">
+                <label>Nome Fantasia</label>
+                <input type="text" value="${user.nomeFantasia || user.company || ''}" id="compNomeFantasia" placeholder="Nome Fantasia">
+              </div>
+              <div class="form-group">
+                <label>CNPJ</label>
+                <input type="text" value="${user.cnpj || ''}" id="compCNPJ" placeholder="00.000.000/0000-00" readonly style="background:#f5f5f5">
+              </div>
+              <div class="form-group">
+                <label>Inscrição Estadual</label>
+                <input type="text" value="${user.inscricaoEstadual || ''}" id="compIE" placeholder="Inscrição Estadual">
+              </div>
+            </div>
+          </div>
+          <div class="form-section">
+            <h3><span class="material-icons-outlined">person</span> Responsável</h3>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>Nome do Responsável</label>
+                <input type="text" value="${user.responsavel || user.name || ''}" id="compResponsavel" placeholder="Nome completo">
+              </div>
+              <div class="form-group">
+                <label>Cargo</label>
+                <input type="text" value="${user.cargo || ''}" id="compCargo" placeholder="Ex: Gerente de Compras">
+              </div>
+              <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" value="${user.email || ''}" id="compEmail" placeholder="email@empresa.com.br">
+              </div>
+              <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" value="${user.telefone || ''}" id="compTelefone" placeholder="(00) 00000-0000">
+              </div>
+            </div>
+          </div>
+          <div class="form-section">
+            <h3><span class="material-icons-outlined">local_shipping</span> Endereço Fiscal</h3>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>CEP</label>
+                <input type="text" value="${user.cep || ''}" id="compCEP" placeholder="00000-000">
+              </div>
+              <div class="form-group">
+                <label>Rua</label>
+                <input type="text" value="${user.rua || ''}" id="compRua" placeholder="Logradouro">
+              </div>
+              <div class="form-group">
+                <label>Número</label>
+                <input type="text" value="${user.numero || ''}" id="compNumero" placeholder="Nº">
+              </div>
+              <div class="form-group">
+                <label>Complemento</label>
+                <input type="text" value="${user.complemento || ''}" id="compComplemento" placeholder="Sala, Andar, etc.">
+              </div>
+              <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" value="${user.bairro || ''}" id="compBairro" placeholder="Bairro">
+              </div>
+              <div class="form-group">
+                <label>Cidade</label>
+                <input type="text" value="${user.cidade || ''}" id="compCidade" placeholder="Cidade">
+              </div>
+              <div class="form-group">
+                <label>Estado</label>
+                <select id="compEstado">
+                  <option value="">Selecione</option>
+                  ${['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'].map(uf =>
+                    `<option value="${uf}" ${(user.estado || '') === uf ? 'selected' : ''}>${uf}</option>`
+                  ).join('')}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <span class="material-icons-outlined">save</span> Salvar Alterações
+            </button>
+          </div>
+        </form>
+      </div>`
+  };
+
+  container.innerHTML = tabs[currentAccountTab] || tabs.painel;
+}
+
+// --- Account Helper Functions ---
+function createNewList() {
+  const name = prompt('Nome da lista de compra:');
+  if (!name) return;
+  const lists = JSON.parse(localStorage.getItem('tutty_lists_' + currentUser.email) || '[]');
+  lists.push({ name, items: [], date: new Date().toLocaleDateString('pt-BR') });
+  localStorage.setItem('tutty_lists_' + currentUser.email, JSON.stringify(lists));
+  renderAccountContent();
+  showDemoModal('Lista Criada', `A lista "<strong>${name}</strong>" foi criada com sucesso. Adicione produtos a ela pelo catálogo.`);
+}
+
+function deleteList(index) {
+  if (!confirm('Excluir esta lista?')) return;
+  const lists = JSON.parse(localStorage.getItem('tutty_lists_' + currentUser.email) || '[]');
+  lists.splice(index, 1);
+  localStorage.setItem('tutty_lists_' + currentUser.email, JSON.stringify(lists));
+  renderAccountContent();
+}
+
+function addListToCart(index) {
+  showDemoModal('Em breve', 'A funcionalidade de adicionar lista ao carrinho estará disponível em breve!');
+}
+
+function showAddressForm() {
+  const container = document.getElementById('addressFormContainer');
+  if (!container) return;
+  container.innerHTML = `
+    <div class="address-form-card">
+      <h4>Novo Endereço</h4>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Apelido</label>
+          <input type="text" id="addrLabel" placeholder="Ex: Matriz, Filial, Depósito">
+        </div>
+        <div class="form-group">
+          <label>CEP</label>
+          <input type="text" id="addrCEP" placeholder="00000-000">
+        </div>
+        <div class="form-group">
+          <label>Rua</label>
+          <input type="text" id="addrStreet" placeholder="Logradouro">
+        </div>
+        <div class="form-group">
+          <label>Número</label>
+          <input type="text" id="addrNumber" placeholder="Nº">
+        </div>
+        <div class="form-group">
+          <label>Bairro</label>
+          <input type="text" id="addrNeighborhood" placeholder="Bairro">
+        </div>
+        <div class="form-group">
+          <label>Cidade</label>
+          <input type="text" id="addrCity" placeholder="Cidade">
+        </div>
+        <div class="form-group">
+          <label>Estado</label>
+          <input type="text" id="addrState" placeholder="UF" maxlength="2">
+        </div>
+        <div class="form-group">
+          <label>Complemento</label>
+          <input type="text" id="addrComplement" placeholder="Sala, Andar...">
+        </div>
+        <div class="form-group full-width">
+          <label>Referência</label>
+          <input type="text" id="addrReference" placeholder="Ponto de referência">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary btn-sm" onclick="saveAddress()">
+          <span class="material-icons-outlined">save</span> Salvar
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="document.getElementById('addressFormContainer').innerHTML=''">Cancelar</button>
+      </div>
+    </div>`;
+}
+
+function saveAddress() {
+  const addr = {
+    label: document.getElementById('addrLabel').value || 'Endereço',
+    cep: document.getElementById('addrCEP').value,
+    street: document.getElementById('addrStreet').value,
+    number: document.getElementById('addrNumber').value,
+    neighborhood: document.getElementById('addrNeighborhood').value,
+    city: document.getElementById('addrCity').value,
+    state: document.getElementById('addrState').value,
+    complement: document.getElementById('addrComplement').value,
+    reference: document.getElementById('addrReference').value,
+    isDefault: false
+  };
+  if (!addr.street || !addr.city) {
+    showDemoModal('Erro', 'Preencha pelo menos Rua e Cidade.');
+    return;
+  }
+  const addresses = JSON.parse(localStorage.getItem('tutty_addresses_' + currentUser.email) || '[]');
+  if (addresses.length === 0) addr.isDefault = true;
+  addresses.push(addr);
+  localStorage.setItem('tutty_addresses_' + currentUser.email, JSON.stringify(addresses));
+  renderAccountContent();
+  showDemoModal('Endereço Salvo', `O endereço "<strong>${addr.label}</strong>" foi adicionado com sucesso.`);
+}
+
+function deleteAddress(index) {
+  if (!confirm('Excluir este endereço?')) return;
+  const addresses = JSON.parse(localStorage.getItem('tutty_addresses_' + currentUser.email) || '[]');
+  addresses.splice(index, 1);
+  if (addresses.length > 0 && !addresses.some(a => a.isDefault)) addresses[0].isDefault = true;
+  localStorage.setItem('tutty_addresses_' + currentUser.email, JSON.stringify(addresses));
+  renderAccountContent();
+}
+
+function setDefaultAddress(index) {
+  const addresses = JSON.parse(localStorage.getItem('tutty_addresses_' + currentUser.email) || '[]');
+  addresses.forEach((a, i) => a.isDefault = (i === index));
+  localStorage.setItem('tutty_addresses_' + currentUser.email, JSON.stringify(addresses));
+  renderAccountContent();
+}
+
+function requestEquipment() {
+  showDemoModal('Solicitação Enviada', 'Sua solicitação de equipamento em comodato foi registrada. Nossa equipe comercial entrará em contato em até 48 horas úteis para avaliar sua operação e disponibilidade.');
+}
+
+function saveCompanyData(event) {
+  event.preventDefault();
+  const users = JSON.parse(localStorage.getItem('tutty_users') || '[]');
+  const userIndex = users.findIndex(u => u.email === currentUser.email);
+  if (userIndex >= 0) {
+    users[userIndex].razaoSocial = document.getElementById('compRazaoSocial').value;
+    users[userIndex].nomeFantasia = document.getElementById('compNomeFantasia').value;
+    users[userIndex].inscricaoEstadual = document.getElementById('compIE').value;
+    users[userIndex].responsavel = document.getElementById('compResponsavel').value;
+    users[userIndex].cargo = document.getElementById('compCargo').value;
+    users[userIndex].telefone = document.getElementById('compTelefone').value;
+    users[userIndex].cep = document.getElementById('compCEP').value;
+    users[userIndex].rua = document.getElementById('compRua').value;
+    users[userIndex].numero = document.getElementById('compNumero').value;
+    users[userIndex].complemento = document.getElementById('compComplemento').value;
+    users[userIndex].bairro = document.getElementById('compBairro').value;
+    users[userIndex].cidade = document.getElementById('compCidade').value;
+    users[userIndex].estado = document.getElementById('compEstado').value;
+    localStorage.setItem('tutty_users', JSON.stringify(users));
+  }
+  showDemoModal('Dados Salvos', 'Os dados da empresa foram atualizados com sucesso!');
 }
 
 // --- Offers ---

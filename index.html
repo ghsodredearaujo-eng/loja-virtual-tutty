@@ -810,13 +810,13 @@
           <div class="account-grid">
             <aside class="account-sidebar">
               <nav class="account-nav">
-                <a href="#" class="active"><span class="material-icons-outlined">dashboard</span> Painel</a>
-                <a href="#" onclick="showPage('orders')"><span class="material-icons-outlined">receipt_long</span> Meus Pedidos</a>
-                <a href="#"><span class="material-icons-outlined">list_alt</span> Listas de Compra</a>
-                <a href="#"><span class="material-icons-outlined">autorenew</span> Pedidos Recorrentes</a>
-                <a href="#"><span class="material-icons-outlined">location_on</span> Endereços</a>
-                <a href="#"><span class="material-icons-outlined">build</span> Equipamentos em Comodato</a>
-                <a href="#"><span class="material-icons-outlined">settings</span> Dados da Empresa</a>
+                <a href="javascript:void(0)" class="active" onclick="switchAccountTab('painel', this)"><span class="material-icons-outlined">dashboard</span> Painel</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('pedidos', this)"><span class="material-icons-outlined">receipt_long</span> Meus Pedidos</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('listas', this)"><span class="material-icons-outlined">list_alt</span> Listas de Compra</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('recorrentes', this)"><span class="material-icons-outlined">autorenew</span> Pedidos Recorrentes</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('enderecos', this)"><span class="material-icons-outlined">location_on</span> Endereços</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('equipamentos', this)"><span class="material-icons-outlined">build</span> Equipamentos em Comodato</a>
+                <a href="javascript:void(0)" onclick="switchAccountTab('empresa', this)"><span class="material-icons-outlined">settings</span> Dados da Empresa</a>
               </nav>
             </aside>
             <div class="account-content">
