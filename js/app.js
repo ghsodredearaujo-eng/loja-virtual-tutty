@@ -23,7 +23,7 @@ function loadAuth() {
     if (!localStorage.getItem('tutty_users')) {
       // Seed with default admin
       const defaultUsers = [
-        { email: 'admin@tuttysucos.com.br', name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'admin123', cnpj: '11.377.334/0001-03' }
+        { email: 'ghsodredearaujo@gmail.com', name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'admin123', cnpj: '11.377.334/0001-03' }
       ];
       localStorage.setItem('tutty_users', JSON.stringify(defaultUsers));
     }
