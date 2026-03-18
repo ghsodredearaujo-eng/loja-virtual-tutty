@@ -19,13 +19,14 @@ function loadAuth() {
   try {
     const saved = localStorage.getItem('tutty_current_user');
     if (saved) currentUser = JSON.parse(saved);
-    // Load registered users list (admin feature)
-    if (!localStorage.getItem('tutty_users')) {
-      // Seed with default admin
-      const defaultUsers = [
-        { email: 'admin@demo.local', name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' }
-      ];
-      localStorage.setItem('tutty_users', JSON.stringify(defaultUsers));
+    // Ensure admin user always exists
+    let users = JSON.parse(localStorage.getItem('tutty_users') || '[]');
+    const adminEmail = 'admin@demo.local';
+    const adminExists = users.some(u => u.email.toLowerCase() === adminEmail);
+    if (!adminExists) {
+      users = users.filter(u => u.role !== 'admin');
+      users.unshift({ email: adminEmail, name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' });
+      localStorage.setItem('tutty_users', JSON.stringify(users));
     }
   } catch (e) {}
 }
