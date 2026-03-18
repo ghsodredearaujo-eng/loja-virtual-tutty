@@ -1565,7 +1565,7 @@ h1,h2,h3,h4,h5,h6 { font-weight: 700; line-height: 1.15; }
   .sabores-grid { grid-template-columns: repeat(2, 1fr); }
   .parallax-content { grid-template-columns: 1fr; }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .levels-grid { grid-template-columns: 1fr; }
+  .levels-grid { grid-template-columns: 1fr 1fr !important; }
   .missions-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .location-grid { grid-template-columns: 1fr; }
