@@ -718,7 +718,6 @@
 
   <!-- Scripts -->
   <script src="js/products.js"></script>
-  <script src="js/app.js"></script>
   <script src="script.js"></script>
 
   <script>
@@ -726,9 +725,9 @@
        MARKETPLACE PAGE LOGIC
        ===================================================== */
 
-    // Auth state
-    var currentUser = null;
-    try { currentUser = JSON.parse(localStorage.getItem('tutty_current_user')); } catch(e) {}
+    // Auth state — use fresh read, no var/let conflict
+    var mpCurrentUser = null;
+    try { mpCurrentUser = JSON.parse(localStorage.getItem('tutty_current_user')); } catch(e) {}
 
     // Ensure admin user always exists in user database
     (function ensureAdmin() {
@@ -742,6 +741,7 @@
       }
     })();
 
+    var currentUser = mpCurrentUser;
     var currentLineFilter = 'all';
 
     // Show marketplace if logged in
