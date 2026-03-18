@@ -3,1363 +3,355 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutty Sucos | Plataforma Oficial de Compras para Food Service</title>
-  <meta name="description" content="Abasteça sua operação com sucos profissionais de alta performance. Sucos integrais, néctares, concentrados e opções de baixa caloria para hotéis, restaurantes, cozinhas industriais e mais.">
+  <title>Tutty Sucos | Sucos Integrais, Néctares e Concentrados para Food Service</title>
+  <meta name="description" content="Tutty Sucos - sucos integrais, néctares e concentrados para hotelaria, fast food e food service. Fábrica em Assis-SP com distribuição nacional. Compre direto no marketplace B2B.">
+  <meta name="keywords" content="sucos integrais, néctares, concentrados, food service, hotelaria, fast food, B2B, Tutty Sucos, Assis SP">
+  <meta name="author" content="Tutty Sucos - Inter Brasil Alimentos">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Tutty Sucos | Sabor Natural do Campo para o Seu Negócio">
+  <meta property="og:description" content="Sucos integrais, néctares e concentrados para hotelaria, fast food e food service em todo o Brasil.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/download-5.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Material+Icons+Outlined&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <span>Plataforma exclusiva para operações profissionais de food service</span>
-      <div class="top-bar-links">
-        <a href="#" onclick="showPage('about')">Sobre a Tutty</a>
-        <a href="#" onclick="showPage('support')">Suporte</a>
-        <a href="tel:1833237752"><span class="material-icons-outlined" style="font-size:14px">phone</span> (18) 3323-7752</a>
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════ -->
+  <header>
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="index-new.html" class="nav-logo">
+          <img src="images/brands/logo.png" alt="Tutty Sucos">
+          <span>Tutty Sucos</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="index-new.html" class="active">HOME</a>
+
+          <a href="#quem-somos">QUEM SOMOS</a>
+
+          <div class="nav-dropdown">
+            <a href="marketplace.html">PRODUTOS</a>
+            <div class="dropdown-menu">
+              <a href="marketplace.html#integrais">Integrais</a>
+              <a href="marketplace.html#nectares">Néctares</a>
+              <a href="marketplace.html#concentrados">Concentrados</a>
+              <a href="marketplace.html#laranjada">Laranjada da Roça</a>
+            </div>
+          </div>
+
+          <a href="#onde-encontrar">ONDE ENCONTRAR</a>
+
+          <div class="nav-dropdown">
+            <a href="#">PARCEIROS</a>
+            <div class="dropdown-menu">
+              <a href="quero-tutty.html">Quero Tutty</a>
+              <a href="seja-distribuidor.html">Seja Distribuidor</a>
+            </div>
+          </div>
+
+          <a href="loja-fabrica.html">LOJA DE FÁBRICA</a>
+
+          <div class="nav-dropdown">
+            <a href="#">FALE CONOSCO</a>
+            <div class="dropdown-menu">
+              <a href="#contato-comercial">Comercial</a>
+              <a href="#contato-sac">SAC</a>
+              <a href="#contato-trabalhe">Trabalhe Conosco</a>
+            </div>
+          </div>
+
+          <a href="little-tuttys.html" class="nav-btn-littletuttys">&#127818; LITTLE TUTTYS</a>
+          <a href="marketplace.html" class="nav-btn-marketplace">ACESSAR MARKETPLACE</a>
+        </div>
+
+        <button class="nav-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header class="header" id="mainHeader">
-    <div class="container header-inner">
-      <a href="#" class="logo" onclick="showPage('home')">
-        <img src="images/brands/logo.png" alt="Tutty Sucos" class="logo-img">
-      </a>
-
-      <div class="search-bar">
-        <span class="material-icons-outlined search-icon">search</span>
-        <input type="text" id="searchInput" placeholder="Buscar por produto, sabor, linha..." autocomplete="off">
-        <div class="search-suggestions" id="searchSuggestions"></div>
-      </div>
-
-      <nav class="header-nav">
-        <a href="#" onclick="showPage('catalog')" class="nav-link">
-          <span class="material-icons-outlined">grid_view</span>
-          <span>Catálogo</span>
-        </a>
-        <a href="#" onclick="showPage('orders')" class="nav-link orders-link auth-only">
-          <span class="material-icons-outlined">receipt_long</span>
-          <span>Meus Pedidos</span>
-        </a>
-        <a href="#" onclick="showPage('offers')" class="nav-link offers-link auth-only">
-          <span class="material-icons-outlined">local_offer</span>
-          <span>Ofertas</span>
-        </a>
-        <a href="#" onclick="showPage('login')" class="nav-link nav-link-account visitor-only">
-          <span class="material-icons-outlined">login</span>
-          <span>Entrar</span>
-        </a>
-        <a href="#" onclick="showPage('account')" class="nav-link nav-link-account auth-only">
-          <span class="material-icons-outlined">person</span>
-          <span>Conta</span>
-        </a>
-        <a href="#" onclick="handleLogout()" class="nav-link auth-only" style="color:var(--text-light)">
-          <span class="material-icons-outlined">logout</span>
-          <span>Sair</span>
-        </a>
-        <a href="#" onclick="showPage('admin')" class="nav-link admin-link admin-only">
-          <span class="material-icons-outlined">admin_panel_settings</span>
-          <span>Admin</span>
-        </a>
-        <a href="#" onclick="toggleCart()" class="nav-link cart-link auth-only" id="cartBtn">
-          <span class="material-icons-outlined">shopping_cart</span>
-          <span>Carrinho</span>
-          <span class="cart-badge" id="cartBadge">0</span>
-        </a>
-      </nav>
-
-      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-        <span class="material-icons-outlined">menu</span>
-      </button>
-    </div>
+    </nav>
   </header>
 
-  <!-- Mobile Menu -->
+  <!-- ═══════════════════════════════════════════════════
+       MOBILE MENU
+       ═══════════════════════════════════════════════════ -->
+  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <span>Menu</span>
-      <button onclick="toggleMobileMenu()"><span class="material-icons-outlined">close</span></button>
+    <button class="mobile-menu-close" aria-label="Fechar menu">&times;</button>
+    <a href="index-new.html">HOME</a>
+    <a href="#quem-somos">QUEM SOMOS</a>
+    <a href="#" class="mobile-accordion-toggle">PRODUTOS</a>
+    <div class="mobile-accordion-content">
+      <a href="marketplace.html#integrais">Integrais</a>
+      <a href="marketplace.html#nectares">Néctares</a>
+      <a href="marketplace.html#concentrados">Concentrados</a>
+      <a href="marketplace.html#laranjada">Laranjada da Roça</a>
     </div>
-    <nav class="mobile-nav">
-      <a href="#" onclick="showPage('home'); toggleMobileMenu()"><span class="material-icons-outlined">home</span> Início</a>
-      <a href="#" onclick="showPage('catalog'); toggleMobileMenu()"><span class="material-icons-outlined">grid_view</span> Catálogo</a>
-      <a href="#" onclick="showPage('orders'); toggleMobileMenu()"><span class="material-icons-outlined">receipt_long</span> Meus Pedidos</a>
-      <a href="#" onclick="showPage('offers'); toggleMobileMenu()"><span class="material-icons-outlined">local_offer</span> Ofertas</a>
-      <a href="#" onclick="showPage('account'); toggleMobileMenu()"><span class="material-icons-outlined">person</span> Minha Conta</a>
-      <a href="#" onclick="showPage('about'); toggleMobileMenu()"><span class="material-icons-outlined">info</span> Sobre a Tutty</a>
-      <a href="#" onclick="showPage('support'); toggleMobileMenu()"><span class="material-icons-outlined">help</span> Suporte</a>
-    </nav>
+    <a href="#onde-encontrar">ONDE ENCONTRAR</a>
+    <a href="#" class="mobile-accordion-toggle">PARCEIROS</a>
+    <div class="mobile-accordion-content">
+      <a href="quero-tutty.html">Quero Tutty</a>
+      <a href="seja-distribuidor.html">Seja Distribuidor</a>
+    </div>
+    <a href="loja-fabrica.html">LOJA DE FÁBRICA</a>
+    <a href="#" class="mobile-accordion-toggle">FALE CONOSCO</a>
+    <div class="mobile-accordion-content">
+      <a href="#contato-comercial">Comercial</a>
+      <a href="#contato-sac">SAC</a>
+      <a href="#contato-trabalhe">Trabalhe Conosco</a>
+    </div>
+    <a href="little-tuttys.html" class="nav-btn-littletuttys" style="display:inline-block;margin-top:20px;text-align:center;">&#127818; LITTLE TUTTYS</a>
+    <a href="marketplace.html" class="nav-btn-marketplace" style="display:inline-block;margin-top:10px;text-align:center;">ACESSAR MARKETPLACE</a>
   </div>
 
-  <!-- Cart Sidebar -->
-  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-  <aside class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h3><span class="material-icons-outlined">shopping_cart</span> Carrinho</h3>
-      <button onclick="toggleCart()"><span class="material-icons-outlined">close</span></button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <div class="cart-empty">
-        <span class="material-icons-outlined">remove_shopping_cart</span>
-        <p>Seu carrinho está vazio</p>
-        <a href="#" onclick="showPage('catalog'); toggleCart()">Ver catálogo</a>
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════ -->
+  <main>
+    <section class="hero">
+      <div class="hero-bg" style="background-image: url('assets/download-5.jpg');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-float" style="background-image: url('assets/download-1-2.jpg');"></div>
+      <div class="container">
+        <div class="hero-content reveal">
+          <h1>Sabor natural do campo para o seu negócio</h1>
+          <p>Sucos integrais, néctares e concentrados para hotelaria, fast food e food service em todo o Brasil</p>
+          <div class="hero-badges">
+            <span class="hero-badge">B2B &bull; Food Service</span>
+            <span class="hero-badge">Fábrica em Assis-SP</span>
+            <span class="hero-badge">Distribuição Nacional</span>
+          </div>
+          <div class="hero-buttons">
+            <a href="marketplace.html" class="btn btn-primary">Acessar Marketplace</a>
+            <a href="marketplace.html" class="btn btn-secondary">Ver Produtos</a>
+            <a href="seja-distribuidor.html" class="btn btn-tertiary">Seja um Distribuidor</a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="cart-footer" id="cartFooter" style="display:none">
-      <div class="cart-total">
-        <span>Total:</span>
-        <strong id="cartTotal">R$ 0,00</strong>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         HUB ACCESS BAR
+         ═══════════════════════════════════════════════════ -->
+    <section class="hub-bar">
+      <div class="container">
+        <div class="hub-grid reveal">
+          <a href="marketplace.html" class="hub-card reveal reveal-delay-1">
+            <span class="hub-icon">&#128722;</span>
+            <h3>Marketplace B2B</h3>
+            <p>Compre direto da fábrica com preços exclusivos para o seu negócio</p>
+          </a>
+          <a href="quero-tutty.html" class="hub-card reveal reveal-delay-2">
+            <span class="hub-icon">&#127978;</span>
+            <h3>Quero Tutty no meu Comércio</h3>
+            <p>Receba nossos produtos no seu estabelecimento de forma simples</p>
+          </a>
+          <a href="seja-distribuidor.html" class="hub-card reveal reveal-delay-3">
+            <span class="hub-icon">&#129309;</span>
+            <h3>Seja um Distribuidor</h3>
+            <p>Faça parte da rede de distribuição Tutty em todo o Brasil</p>
+          </a>
+          <a href="loja-fabrica.html" class="hub-card reveal reveal-delay-4">
+            <span class="hub-icon">&#127981;</span>
+            <h3>Loja de Fábrica Assis</h3>
+            <p>Visite nossa loja e compre com preço de fábrica em Assis-SP</p>
+          </a>
+          <a href="little-tuttys.html" class="hub-card reveal reveal-delay-5">
+            <span class="hub-icon">&#127818;</span>
+            <h3>Little Tuttys</h3>
+            <p>Programa de fidelidade exclusivo para clientes Tutty Sucos</p>
+          </a>
+        </div>
       </div>
-      <button class="btn btn-primary btn-block" onclick="showPage('checkout'); toggleCart()">Finalizar Pedido</button>
-      <button class="btn btn-outline btn-block" onclick="toggleCart()">Continuar Comprando</button>
-    </div>
-  </aside>
+    </section>
 
-  <!-- Main Content -->
-  <main id="mainContent">
-
-    <!-- HOME PAGE -->
-    <div class="page" id="page-home">
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <!-- Floating decorative fruit elements -->
-        <div class="floating-fruit fruit-1">🍊</div>
-        <div class="floating-fruit fruit-2">🍇</div>
-        <div class="floating-fruit fruit-3">🍋</div>
-        <div class="floating-fruit fruit-4">🥭</div>
-        <div class="floating-fruit fruit-5">🍍</div>
-        <div class="hero-leaf leaf-1"></div>
-        <div class="hero-leaf leaf-2"></div>
-        <div class="hero-leaf leaf-3"></div>
-        <div class="container hero-content">
-          <div class="hero-text">
-            <span class="hero-badge">Plataforma Oficial B2B</span>
-            <h1>Sucos <span class="text-gradient">naturais</span> com a qualidade que sua operação merece</h1>
-            <p>Mais de 20 anos abastecendo hotéis, restaurantes, buffets e escolas com sucos integrais, néctares e laranjada da roça. Do pomar à sua mesa com total transparência.</p>
-            <div class="hero-actions">
-              <button class="btn btn-primary btn-lg btn-glow" onclick="showPage('catalog')">
-                <span class="material-icons-outlined">shopping_cart</span> Fazer meu pedido agora
-              </button>
-              <button class="btn btn-outline-light btn-lg" onclick="showPage('catalog')">
-                Conhecer o portfólio completo
-              </button>
-            </div>
-            <div class="hero-stats">
-              <div class="hero-stat">
-                <strong>54+</strong>
-                <span>Produtos</span>
-              </div>
-              <div class="hero-stat">
-                <strong>20+</strong>
-                <span>Anos</span>
-              </div>
-              <div class="hero-stat">
-                <strong>9</strong>
-                <span>Estados</span>
-              </div>
+    <!-- ═══════════════════════════════════════════════════
+         SABORES SECTION
+         ═══════════════════════════════════════════════════ -->
+    <section class="sabores section" id="sabores">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Nossos Sabores</h2>
+          <p>Frutas selecionadas, processadas com tecnologia de ponta para manter o sabor e os nutrientes naturais</p>
+        </div>
+        <div class="sabores-grid">
+          <div class="sabor-card reveal reveal-delay-1">
+            <div class="sabor-card-bg" style="background-image: url('assets/download-2.jpg');"></div>
+            <div class="sabor-card-overlay"></div>
+            <div class="sabor-card-content">
+              <span class="sabor-badge">Integral</span>
+              <h3>Laranja</h3>
+              <p>100% suco natural, sem adição de açúcar ou conservantes. Direto do pomar para a sua mesa.</p>
             </div>
           </div>
-          <div class="hero-image">
-            <div class="hero-product-display">
-              <img src="images/products/suco-integral-laranja.jpg" alt="Tutty Sucos - Suco Integral de Laranja" class="hero-product-img hero-img-main">
-              <img src="images/products/nectar-frutas.jpg" alt="Tutty Sucos - Néctares" class="hero-product-img hero-img-secondary">
-              <img src="images/products/laranjada-da-roca.jpg" alt="Tutty Sucos - Laranjada da Roça" class="hero-product-img hero-img-tertiary">
-              <div class="hero-floating-card card-1">
-                <span class="material-icons-outlined">verified</span>
-                <span>100% Natural</span>
-              </div>
-              <div class="hero-floating-card card-2">
-                <span class="material-icons-outlined">eco</span>
-                <span>Sem conservantes</span>
-              </div>
-              <div class="hero-floating-card card-3">
-                <span class="material-icons-outlined">local_shipping</span>
-                <span>Entrega nacional</span>
-              </div>
+          <div class="sabor-card reveal reveal-delay-2">
+            <div class="sabor-card-bg" style="background-image: url('assets/download-5.jpg');"></div>
+            <div class="sabor-card-overlay"></div>
+            <div class="sabor-card-content">
+              <span class="sabor-badge">Néctar</span>
+              <h3>Manga</h3>
+              <p>Néctar de manga com polpa selecionada, sabor tropical e consistência cremosa.</p>
+            </div>
+          </div>
+          <div class="sabor-card reveal reveal-delay-3">
+            <div class="sabor-card-bg" style="background-image: url('assets/Descubra-o-que-a-UVA-faz-com-sua-PELE-3.jpg');"></div>
+            <div class="sabor-card-overlay"></div>
+            <div class="sabor-card-content">
+              <span class="sabor-badge">Néctar</span>
+              <h3>Uva Roxa</h3>
+              <p>Rico em antioxidantes, elaborado com as melhores uvas roxas da região.</p>
+            </div>
+          </div>
+          <div class="sabor-card reveal reveal-delay-4">
+            <div class="sabor-card-bg" style="background-image: url('assets/goiaba-4.jpg');"></div>
+            <div class="sabor-card-overlay"></div>
+            <div class="sabor-card-content">
+              <span class="sabor-badge">Néctar</span>
+              <h3>Goiaba</h3>
+              <p>Polpa de goiaba vermelha com sabor intenso e cor vibrante, perfeito para qualquer ocasião.</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Benefits -->
-      <section class="benefits">
-        <div class="container">
-          <div class="benefits-grid">
-            <div class="benefit-card">
-              <div class="benefit-icon">
-                <span class="material-icons-outlined">local_shipping</span>
-              </div>
-              <h3>Entrega ágil e confiável</h3>
-              <p>Logística dedicada para operações profissionais de food service em todo o Brasil</p>
+    <!-- ═══════════════════════════════════════════════════
+         PARALLAX SECTION
+         ═══════════════════════════════════════════════════ -->
+    <section class="parallax-section">
+      <div class="parallax-bg" style="background-image: url('assets/download-2.jpg');"></div>
+      <div class="parallax-overlay"></div>
+      <div class="container">
+        <div class="parallax-content">
+          <div class="parallax-text reveal">
+            <h2>Da fazenda ao seu negócio</h2>
+            <p>Controlamos cada etapa da cadeia produtiva, desde a seleção das frutas nos pomares até a entrega no seu estabelecimento. Nossa fábrica em Assis-SP opera com tecnologia de pasteurização que preserva vitaminas, minerais e o sabor autêntico de cada fruta.</p>
+            <div class="parallax-badges">
+              <span class="parallax-badge">Frutas Selecionadas</span>
+              <span class="parallax-badge">Processo Pasteurizado</span>
+              <span class="parallax-badge">Entrega Nacional</span>
             </div>
-            <div class="benefit-card">
-              <div class="benefit-icon">
-                <span class="material-icons-outlined">inventory_2</span>
-              </div>
-              <h3>Portfólio completo</h3>
-              <p>Sucos integrais, néctares, concentrados e opções de baixa caloria para cada tipo de operação</p>
-            </div>
-            <div class="benefit-card">
-              <div class="benefit-icon">
-                <span class="material-icons-outlined">description</span>
-              </div>
-              <h3>Fichas técnicas disponíveis</h3>
-              <p>Laudos, tabelas nutricionais e rótulos para download — total transparência</p>
-            </div>
-            <div class="benefit-card">
-              <div class="benefit-icon">
-                <span class="material-icons-outlined">autorenew</span>
-              </div>
-              <h3>Compras recorrentes</h3>
-              <p>Repita pedidos anteriores em poucos cliques com condições B2B personalizadas</p>
-            </div>
+          </div>
+          <div class="parallax-card reveal reveal-delay-2">
+            <h3>Por que escolher Tutty?</h3>
+            <ul>
+              <li>Fábrica própria com controle de qualidade rigoroso</li>
+              <li>Logística integrada com entrega em todo o Brasil</li>
+              <li>Condições especiais para compras recorrentes</li>
+              <li>Atendimento comercial especializado em food service</li>
+              <li>Embalagens profissionais para hotelaria e restaurantes</li>
+              <li>Programa de fidelidade Little Tuttys com benefícios exclusivos</li>
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Categories Showcase -->
-      <section class="section categories-section">
-        <div class="container">
-          <div class="section-header">
-            <h2>Explore nosso portfólio</h2>
-            <p>Encontre os produtos ideais para a sua operação</p>
-          </div>
-          <div class="categories-grid">
-            <div class="category-card" onclick="filterCatalog('integral')" data-aos="fade-up">
-              <div class="category-image category-fruits-integral">
-                <div class="fruit-scene">
-                  <img src="images/fruits/laranja.png" alt="Laranja" class="fruit-main fruit-img-main">
-                  <img src="images/fruits/limao.png" alt="Limão" class="fruit-orbit fruit-o1 fruit-img-sm">
-                  <img src="images/fruits/laranja2.png" alt="Laranja" class="fruit-orbit fruit-o2 fruit-img-xs">
-                  <span class="fruit-splash splash-1"></span>
-                  <span class="fruit-splash splash-2"></span>
-                  <span class="fruit-splash splash-3"></span>
-                  <div class="fruit-glow"></div>
-                </div>
-                <div class="category-overlay"></div>
-              </div>
-              <div class="category-info">
-                <h3>Sucos Integrais</h3>
-                <p>100% fruta, sem adição de açúcar</p>
-                <span class="category-count">6 produtos</span>
-              </div>
-            </div>
-            <div class="category-card" onclick="filterCatalog('laranjada')" data-aos="fade-up">
-              <div class="category-image category-fruits-laranjada">
-                <div class="fruit-scene">
-                  <img src="images/fruits/laranja2.png" alt="Laranja" class="fruit-main fruit-img-main">
-                  <img src="images/fruits/limao.png" alt="Limão" class="fruit-orbit fruit-o1 fruit-img-sm">
-                  <img src="images/fruits/laranja.png" alt="Laranja" class="fruit-orbit fruit-o3 fruit-img-xs">
-                  <span class="fruit-splash splash-1"></span>
-                  <span class="fruit-splash splash-2"></span>
-                  <span class="fruit-splash splash-3"></span>
-                  <div class="fruit-glow"></div>
-                </div>
-                <div class="category-overlay"></div>
-              </div>
-              <div class="category-info">
-                <h3>Laranjada da Roça</h3>
-                <p>Sabor caseiro e refrescante</p>
-                <span class="category-count">7 produtos</span>
-              </div>
-            </div>
-            <div class="category-card" onclick="filterCatalog('nectar')" data-aos="fade-up">
-              <div class="category-image category-fruits-nectar">
-                <div class="fruit-scene">
-                  <img src="images/fruits/uva.png" alt="Uva" class="fruit-main fruit-img-main">
-                  <img src="images/fruits/abacaxi.png" alt="Abacaxi" class="fruit-orbit fruit-o1 fruit-img-sm">
-                  <img src="images/fruits/goiaba.png" alt="Goiaba" class="fruit-orbit fruit-o2 fruit-img-sm">
-                  <img src="images/fruits/maracuja.jpg" alt="Maracujá" class="fruit-orbit fruit-o3 fruit-img-xs">
-                  <span class="fruit-splash splash-1"></span>
-                  <span class="fruit-splash splash-2"></span>
-                  <span class="fruit-splash splash-3"></span>
-                  <div class="fruit-glow"></div>
-                </div>
-                <div class="category-overlay"></div>
-              </div>
-              <div class="category-info">
-                <h3>Néctares</h3>
-                <p>Variedade de sabores prontos para servir</p>
-                <span class="category-count">41 produtos</span>
-              </div>
-            </div>
+    <!-- ═══════════════════════════════════════════════════
+         TRUST SECTION
+         ═══════════════════════════════════════════════════ -->
+    <section class="trust-section section" id="quem-confia">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Quem confia na Tutty</h2>
+          <p>Atendemos os principais segmentos do mercado de food service em todo o país</p>
+        </div>
+        <div class="trust-chips reveal">
+          <span class="chip">Redes de Hotelaria</span>
+          <span class="chip">Fast Food</span>
+          <span class="chip">Restaurantes</span>
+          <span class="chip">Food Service</span>
+          <span class="chip">Distribuidores</span>
+          <span class="chip">Catering</span>
+          <span class="chip">Hospitais</span>
+          <span class="chip">Escolas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         CTA SECTION
+         ═══════════════════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content reveal">
+          <h2>Pronto para ter Tutty Sucos no seu negócio?</h2>
+          <p>Entre em contato com nosso time comercial e descubra as melhores condições para abastecer sua operação com sucos de qualidade profissional.</p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/5518981544334" class="btn btn-white" target="_blank" rel="noopener">Fale com o Comercial</a>
+            <a href="marketplace.html" class="btn btn-secondary">Acessar Marketplace</a>
           </div>
         </div>
-      </section>
-
-      <!-- Best Sellers -->
-      <section class="section bestsellers-section">
-        <div class="container">
-          <div class="section-header">
-            <h2>Mais vendidos</h2>
-            <p>Os produtos preferidos pelos nossos clientes de food service</p>
-            <a href="#" onclick="showPage('catalog')" class="section-link">Ver todos <span class="material-icons-outlined">arrow_forward</span></a>
-          </div>
-          <div class="products-grid" id="bestSellersGrid">
-            <!-- Filled by JS -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Food Service Section -->
-      <section class="section foodservice-section">
-        <div class="container">
-          <div class="foodservice-grid">
-            <div class="foodservice-text">
-              <span class="section-badge">Para profissionais</span>
-              <h2>Pensado para quem vive o food service</h2>
-              <p>Seja no café da manhã do hotel, no buffet do almoço, no lanche escolar ou em grandes eventos, a Tutty Sucos entrega padrão de sabor, praticidade e controle de custo por copo.</p>
-              <p>Nossa loja virtual foi desenhada para o comprador profissional, com filtros avançados, rendimentos claros, preços por caixa e por litro e ferramentas para repetir seus pedidos frequentes em segundos.</p>
-              <ul class="feature-list">
-                <li><span class="material-icons-outlined">check_circle</span> Filtros por sabor, volume, linha e tipo de operação</li>
-                <li><span class="material-icons-outlined">check_circle</span> Rendimento e custo por copo em cada produto</li>
-                <li><span class="material-icons-outlined">check_circle</span> Repetição de pedidos anteriores em 1 clique</li>
-                <li><span class="material-icons-outlined">check_circle</span> Preços B2B personalizados por perfil</li>
-              </ul>
-            </div>
-            <div class="foodservice-visual">
-              <div class="foodservice-image-wrapper">
-                <img src="images/brands/company.webp" alt="Tutty Sucos - Inter Brasil Alimentos" class="foodservice-img" loading="lazy">
-              </div>
-              <div class="operation-cards">
-                <div class="op-card">
-                  <span class="material-icons-outlined">hotel</span>
-                  <span>Hotéis</span>
-                </div>
-                <div class="op-card">
-                  <span class="material-icons-outlined">restaurant</span>
-                  <span>Restaurantes</span>
-                </div>
-                <div class="op-card">
-                  <span class="material-icons-outlined">school</span>
-                  <span>Escolas</span>
-                </div>
-                <div class="op-card">
-                  <span class="material-icons-outlined">local_hospital</span>
-                  <span>Hospitais</span>
-                </div>
-                <div class="op-card">
-                  <span class="material-icons-outlined">celebration</span>
-                  <span>Eventos</span>
-                </div>
-                <div class="op-card">
-                  <span class="material-icons-outlined">factory</span>
-                  <span>Coz. Industriais</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How It Works -->
-      <section class="section howitworks-section">
-        <div class="container">
-          <div class="section-header">
-            <h2>Como a loja funciona</h2>
-            <p>Em poucos passos, sua operação está abastecida</p>
-          </div>
-          <div class="steps-grid">
-            <div class="step-card">
-              <div class="step-number">1</div>
-              <div class="step-icon"><span class="material-icons-outlined">badge</span></div>
-              <h3>Cadastre sua empresa</h3>
-              <p>Informe o CNPJ da sua empresa e tenha acesso às suas condições comerciais personalizadas.</p>
-            </div>
-            <div class="step-connector"><span class="material-icons-outlined">arrow_forward</span></div>
-            <div class="step-card">
-              <div class="step-number">2</div>
-              <div class="step-icon"><span class="material-icons-outlined">search</span></div>
-              <h3>Encontre os produtos</h3>
-              <p>Use filtros por sabor, volume, linha de produto e tipo de operação para encontrar o mix ideal.</p>
-            </div>
-            <div class="step-connector"><span class="material-icons-outlined">arrow_forward</span></div>
-            <div class="step-card">
-              <div class="step-number">3</div>
-              <div class="step-icon"><span class="material-icons-outlined">calculate</span></div>
-              <h3>Consulte rendimento</h3>
-              <p>Veja ficha técnica, custo por copo e rendimento antes de fechar o pedido.</p>
-            </div>
-            <div class="step-connector"><span class="material-icons-outlined">arrow_forward</span></div>
-            <div class="step-card">
-              <div class="step-number">4</div>
-              <div class="step-icon"><span class="material-icons-outlined">check_circle</span></div>
-              <h3>Finalize a compra</h3>
-              <p>Frete calculado automaticamente. Acompanhe cada etapa pelo painel da sua conta.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Target Audience -->
-      <section class="section target-section">
-        <div class="container">
-          <div class="target-content">
-            <div class="target-text">
-              <h2>Para quem é a Tutty Sucos</h2>
-              <p>A Tutty Sucos atende exclusivamente operações que precisam de volume, consistência e segurança alimentar no dia a dia. Se você administra hotéis, restaurantes, cozinhas industriais, escolas, hospitais, buffets ou empresas de eventos, encontrará aqui um portfólio completo para compor o cardápio de bebidas da sua operação.</p>
-            </div>
-            <div class="target-badges">
-              <div class="target-badge"><span class="material-icons-outlined">hotel</span> Hotéis e Resorts</div>
-              <div class="target-badge"><span class="material-icons-outlined">restaurant</span> Restaurantes</div>
-              <div class="target-badge"><span class="material-icons-outlined">factory</span> Cozinhas Industriais</div>
-              <div class="target-badge"><span class="material-icons-outlined">school</span> Escolas</div>
-              <div class="target-badge"><span class="material-icons-outlined">local_hospital</span> Hospitais</div>
-              <div class="target-badge"><span class="material-icons-outlined">celebration</span> Buffets e Eventos</div>
-              <div class="target-badge"><span class="material-icons-outlined">fastfood</span> Redes de Fast Food</div>
-              <div class="target-badge"><span class="material-icons-outlined">local_gas_station</span> Conveniências</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Trust Block -->
-      <section class="section trust-section">
-        <div class="container">
-          <div class="trust-grid">
-            <div class="trust-item">
-              <span class="material-icons-outlined">verified_user</span>
-              <h3>+20 anos de mercado</h3>
-              <p>Experiência consolidada em atender o food service brasileiro</p>
-            </div>
-            <div class="trust-item">
-              <span class="material-icons-outlined">precision_manufacturing</span>
-              <h3>Estrutura industrial própria</h3>
-              <p>Fábrica em Assis/SP com tecnologia de ponta e controle rigoroso</p>
-            </div>
-            <div class="trust-item">
-              <span class="material-icons-outlined">map</span>
-              <h3>Atuação nacional</h3>
-              <p>Distribuidores em SP, RJ, MG, PR, SC, RS, GO, MS e MT</p>
-            </div>
-            <div class="trust-item">
-              <span class="material-icons-outlined">workspace_premium</span>
-              <h3>Qualidade certificada</h3>
-              <p>Informações completas de rótulo, ingredientes e tabela nutricional</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="cta-section">
-        <div class="container">
-          <div class="cta-content">
-            <h2>Pronto para abastecer sua operação?</h2>
-            <p>Cadastre sua empresa e tenha acesso a preços exclusivos, pedidos recorrentes e suporte técnico especializado.</p>
-            <div class="cta-actions">
-              <button class="btn btn-primary btn-lg" onclick="showPage('register')">Cadastrar minha empresa</button>
-              <button class="btn btn-outline-light btn-lg" onclick="showPage('catalog')">Explorar catálogo</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- CATALOG PAGE -->
-    <div class="page" id="page-catalog" style="display:none">
-      <section class="catalog-section">
-        <div class="container">
-          <div class="catalog-header">
-            <div class="breadcrumb">
-              <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Catálogo</span>
-            </div>
-            <h1>Catálogo de Produtos</h1>
-            <p>Encontre os produtos ideais para a sua operação</p>
-          </div>
-
-          <div class="catalog-layout">
-            <!-- Filters Sidebar -->
-            <aside class="filters-sidebar" id="filtersSidebar">
-              <div class="filters-header">
-                <h3>Filtros</h3>
-                <button class="btn-text" onclick="clearFilters()">Limpar filtros</button>
-              </div>
-
-              <div class="filter-group">
-                <h4>Linha de Produto</h4>
-                <label class="filter-check"><input type="checkbox" value="integral" onchange="applyFilters()"> Suco Integral</label>
-                <label class="filter-check"><input type="checkbox" value="laranjada" onchange="applyFilters()"> Laranjada da Roça</label>
-                <label class="filter-check"><input type="checkbox" value="nectar" onchange="applyFilters()"> Néctar</label>
-              </div>
-
-              <div class="filter-group">
-                <h4>Sabor</h4>
-                <label class="filter-check"><input type="checkbox" value="laranja" onchange="applyFilters()"> Laranja</label>
-                <label class="filter-check"><input type="checkbox" value="uva" onchange="applyFilters()"> Uva</label>
-                <label class="filter-check"><input type="checkbox" value="goiaba" onchange="applyFilters()"> Goiaba</label>
-                <label class="filter-check"><input type="checkbox" value="maracuja" onchange="applyFilters()"> Maracujá</label>
-                <label class="filter-check"><input type="checkbox" value="abacaxi" onchange="applyFilters()"> Abacaxi</label>
-                <label class="filter-check"><input type="checkbox" value="abacaxi-hortela" onchange="applyFilters()"> Abacaxi c/ Hortelã</label>
-                <label class="filter-check"><input type="checkbox" value="caju" onchange="applyFilters()"> Caju</label>
-                <label class="filter-check"><input type="checkbox" value="limao" onchange="applyFilters()"> Limão</label>
-                <label class="filter-check"><input type="checkbox" value="manga" onchange="applyFilters()"> Manga</label>
-                <label class="filter-check"><input type="checkbox" value="laranja-acerola" onchange="applyFilters()"> Laranja c/ Acerola</label>
-              </div>
-
-              <div class="filter-group">
-                <h4>Volume</h4>
-                <label class="filter-check"><input type="checkbox" value="300ml" onchange="applyFilters()"> 300ml</label>
-                <label class="filter-check"><input type="checkbox" value="900ml" onchange="applyFilters()"> 900ml</label>
-                <label class="filter-check"><input type="checkbox" value="1.5L" onchange="applyFilters()"> 1,5 Litro</label>
-                <label class="filter-check"><input type="checkbox" value="2L" onchange="applyFilters()"> 2 Litros</label>
-                <label class="filter-check"><input type="checkbox" value="3L" onchange="applyFilters()"> 3 Litros</label>
-                <label class="filter-check"><input type="checkbox" value="Bag 5L" onchange="applyFilters()"> Bag 5L</label>
-                <label class="filter-check"><input type="checkbox" value="Galão 5L" onchange="applyFilters()"> Galão 5L PET</label>
-              </div>
-
-              <div class="filter-group">
-                <h4>Tipo de Operação</h4>
-                <label class="filter-check"><input type="checkbox" value="hotel" onchange="applyFilters()"> Café da manhã de hotel</label>
-                <label class="filter-check"><input type="checkbox" value="selfservice" onchange="applyFilters()"> Self-service</label>
-                <label class="filter-check"><input type="checkbox" value="escola" onchange="applyFilters()"> Escolas</label>
-                <label class="filter-check"><input type="checkbox" value="eventos" onchange="applyFilters()"> Eventos</label>
-                <label class="filter-check"><input type="checkbox" value="industrial" onchange="applyFilters()"> Cozinhas industriais</label>
-              </div>
-
-              <div class="filter-group">
-                <h4>Ordenar por</h4>
-                <select id="sortSelect" onchange="applyFilters()">
-                  <option value="relevance">Relevância</option>
-                  <option value="price-asc">Menor preço</option>
-                  <option value="price-desc">Maior preço</option>
-                  <option value="bestseller">Mais vendidos</option>
-                  <option value="newest">Lançamentos</option>
-                  <option value="savings">Maior economia</option>
-                </select>
-              </div>
-            </aside>
-
-            <!-- Products Grid -->
-            <div class="catalog-content">
-              <div class="catalog-toolbar">
-                <span class="results-count" id="resultsCount">24 produtos encontrados</span>
-                <button class="btn-icon mobile-filter-btn" onclick="toggleFilters()">
-                  <span class="material-icons-outlined">filter_list</span> Filtros
-                </button>
-              </div>
-              <div class="products-grid" id="catalogGrid">
-                <!-- Filled by JS -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- PRODUCT DETAIL PAGE -->
-    <div class="page" id="page-product" style="display:none">
-      <section class="product-detail">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span>
-            <a href="#" onclick="showPage('catalog')">Catálogo</a> <span>/</span>
-            <span id="productBreadcrumb">Produto</span>
-          </div>
-          <div class="product-detail-grid" id="productDetailContent">
-            <!-- Filled by JS -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ORDERS PAGE -->
-    <div class="page" id="page-orders" style="display:none">
-      <section class="orders-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Meus Pedidos</span>
-          </div>
-          <h1>Meus Pedidos</h1>
-          <div class="orders-content" id="ordersContent">
-            <div class="login-prompt">
-              <span class="material-icons-outlined">lock</span>
-              <h3>Faça login para ver seus pedidos</h3>
-              <p>Acesse sua conta para visualizar o histórico de pedidos, repetir compras e acompanhar entregas.</p>
-              <button class="btn btn-primary" onclick="showPage('login')">Fazer Login</button>
-              <p class="mt-1">Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- OFFERS PAGE -->
-    <div class="page" id="page-offers" style="display:none">
-      <section class="offers-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Ofertas</span>
-          </div>
-          <h1>Ofertas Especiais</h1>
-          <p class="section-subtitle">Condições exclusivas para clientes B2B cadastrados</p>
-          <div class="offers-grid" id="offersGrid">
-            <!-- Filled by JS -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- CHECKOUT PAGE -->
-    <div class="page" id="page-checkout" style="display:none">
-      <section class="checkout-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Checkout</span>
-          </div>
-          <h1>Finalizar Pedido</h1>
-          <div class="checkout-grid">
-            <div class="checkout-form">
-              <div class="checkout-step">
-                <h3><span class="step-num">1</span> Dados de Entrega</h3>
-                <div class="form-grid">
-                  <div class="form-group full">
-                    <label>Endereço de entrega</label>
-                    <select class="form-control">
-                      <option>Selecione um endereço cadastrado</option>
-                      <option>Unidade Principal - Av. Paulista, 1000 - São Paulo/SP</option>
-                      <option>+ Adicionar novo endereço</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>CEP</label>
-                    <input type="text" class="form-control" placeholder="00000-000">
-                  </div>
-                  <div class="form-group">
-                    <label>Cidade/UF</label>
-                    <input type="text" class="form-control" placeholder="São Paulo/SP">
-                  </div>
-                </div>
-              </div>
-
-              <div class="checkout-step">
-                <h3><span class="step-num">2</span> Forma de Pagamento</h3>
-                <div class="payment-options">
-                  <label class="payment-option">
-                    <input type="radio" name="payment" value="boleto" checked>
-                    <div class="payment-info">
-                      <span class="material-icons-outlined">receipt</span>
-                      <div>
-                        <strong>Boleto Bancário</strong>
-                        <span>Vencimento em 28 dias</span>
-                      </div>
-                    </div>
-                  </label>
-                  <label class="payment-option">
-                    <input type="radio" name="payment" value="pix">
-                    <div class="payment-info">
-                      <span class="material-icons-outlined">qr_code</span>
-                      <div>
-                        <strong>PIX</strong>
-                        <span>Aprovação imediata</span>
-                      </div>
-                    </div>
-                  </label>
-                  <label class="payment-option">
-                    <input type="radio" name="payment" value="faturado">
-                    <div class="payment-info">
-                      <span class="material-icons-outlined">account_balance</span>
-                      <div>
-                        <strong>Faturado</strong>
-                        <span>Mediante aprovação de crédito</span>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-              </div>
-
-              <div class="checkout-step">
-                <h3><span class="step-num">3</span> Observações</h3>
-                <textarea class="form-control" rows="3" placeholder="Observações sobre o pedido, horário de entrega preferencial, etc."></textarea>
-              </div>
-            </div>
-
-            <div class="checkout-summary">
-              <div class="summary-card">
-                <h3>Resumo do Pedido</h3>
-                <div class="summary-items" id="checkoutItems">
-                  <!-- Filled by JS -->
-                </div>
-                <div class="summary-line">
-                  <span>Subtotal</span>
-                  <span id="checkoutSubtotal">R$ 0,00</span>
-                </div>
-                <div class="summary-line">
-                  <span>Frete estimado</span>
-                  <span id="checkoutFrete">A calcular</span>
-                </div>
-                <div class="summary-line total">
-                  <span>Total</span>
-                  <strong id="checkoutTotal">R$ 0,00</strong>
-                </div>
-                <button class="btn btn-primary btn-block btn-lg" onclick="placeOrder()">
-                  Confirmar Pedido
-                </button>
-                <p class="summary-note">Ao confirmar, você concorda com os termos comerciais B2B da Tutty Sucos.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- LOGIN PAGE -->
-    <div class="page" id="page-login" style="display:none">
-      <section class="auth-section">
-        <div class="container">
-          <div class="auth-card">
-            <div class="auth-header">
-              <div class="logo-icon"><span class="material-icons-outlined">local_drink</span></div>
-              <h2>Acesse sua conta</h2>
-              <p>Plataforma exclusiva para clientes B2B</p>
-            </div>
-            <form onsubmit="handleLogin(event)">
-              <div class="form-group">
-                <label>E-mail</label>
-                <input type="email" class="form-control" placeholder="seu@empresa.com.br" required>
-              </div>
-              <div class="form-group">
-                <label>Senha</label>
-                <input type="password" class="form-control" placeholder="••••••••" required>
-              </div>
-              <div class="form-row">
-                <label class="filter-check"><input type="checkbox"> Lembrar-me</label>
-                <a href="javascript:void(0)" class="link-sm" onclick="showDemoModal('Recuperação de Senha', 'Enviamos instruções de recuperação para o e-mail cadastrado. Verifique sua caixa de entrada e a pasta de spam.');">Esqueci minha senha</a>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-            </form>
-            <div class="auth-footer">
-              <p>Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- REGISTER PAGE -->
-    <div class="page" id="page-register" style="display:none">
-      <section class="auth-section">
-        <div class="container">
-          <div class="auth-card auth-card-wide">
-            <div class="auth-header">
-              <div class="logo-icon"><span class="material-icons-outlined">local_drink</span></div>
-              <h2>Cadastre sua empresa</h2>
-              <p>Preencha os dados para solicitar acesso. O administrador irá avaliar e aprovar seu cadastro.</p>
-            </div>
-            <form onsubmit="handleRegister(event)">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label>Razão Social / Empresa *</label>
-                  <input type="text" class="form-control" placeholder="Nome da empresa" required>
-                </div>
-                <div class="form-group">
-                  <label>CNPJ *</label>
-                  <input type="text" class="form-control" placeholder="00.000.000/0000-00" required>
-                </div>
-                <div class="form-group">
-                  <label>Nome do Responsável *</label>
-                  <input type="text" class="form-control" placeholder="Nome completo" required>
-                </div>
-                <div class="form-group">
-                  <label>E-mail *</label>
-                  <input type="email" class="form-control" placeholder="contato@empresa.com.br" required>
-                </div>
-                <div class="form-group">
-                  <label>Telefone</label>
-                  <input type="tel" class="form-control" placeholder="(00) 00000-0000">
-                </div>
-                <div class="form-group">
-                  <label>Senha *</label>
-                  <input type="password" class="form-control" placeholder="Mínimo 6 caracteres" required>
-                </div>
-              </div>
-              <div class="register-notice">
-                <span class="material-icons-outlined">info</span>
-                <p>Após o cadastro, o administrador irá analisar e aprovar seu acesso. Somente após a aprovação você poderá visualizar preços e realizar pedidos.</p>
-              </div>
-              <div class="form-group">
-                <label class="filter-check">
-                  <input type="checkbox" required>
-                  Li e concordo com os termos de uso e política de privacidade
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Cadastrar Empresa</button>
-            </form>
-            <div class="auth-footer">
-              <p>Já tem conta? <a href="#" onclick="showPage('login')">Faça login</a></p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ACCOUNT PAGE -->
-    <div class="page" id="page-account" style="display:none">
-      <section class="account-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Minha Conta</span>
-          </div>
-          <h1>Minha Conta</h1>
-          <div class="account-grid">
-            <aside class="account-sidebar">
-              <nav class="account-nav">
-                <a href="javascript:void(0)" class="active" onclick="switchAccountTab('painel', this)"><span class="material-icons-outlined">dashboard</span> Painel</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('pedidos', this)"><span class="material-icons-outlined">receipt_long</span> Meus Pedidos</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('listas', this)"><span class="material-icons-outlined">list_alt</span> Listas de Compra</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('recorrentes', this)"><span class="material-icons-outlined">autorenew</span> Pedidos Recorrentes</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('enderecos', this)"><span class="material-icons-outlined">location_on</span> Endereços</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('equipamentos', this)"><span class="material-icons-outlined">build</span> Equipamentos em Comodato</a>
-                <a href="javascript:void(0)" onclick="switchAccountTab('empresa', this)"><span class="material-icons-outlined">settings</span> Dados da Empresa</a>
-              </nav>
-            </aside>
-            <div class="account-content">
-              <div class="login-prompt">
-                <span class="material-icons-outlined">lock</span>
-                <h3>Faça login para acessar sua conta</h3>
-                <p>Gerencie pedidos, listas de compra, endereços e equipamentos em um só lugar.</p>
-                <button class="btn btn-primary" onclick="showPage('login')">Fazer Login</button>
-                <p class="mt-1">Não tem conta? <a href="#" onclick="showPage('register')">Cadastre sua empresa</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- ABOUT PAGE -->
-    <div class="page" id="page-about" style="display:none">
-      <section class="about-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Sobre a Tutty Sucos</span>
-          </div>
-          <div class="about-hero">
-            <h1>Sobre a Tutty Sucos</h1>
-            <p class="lead">Há mais de 20 anos levando qualidade, sabor e confiança para operações de food service em todo o Brasil.</p>
-          </div>
-
-          <div class="about-content">
-            <div class="about-block">
-              <h2>Nossa História</h2>
-              <p>Fundada em 2004 na cidade de Assis, interior de São Paulo, a Tutty Sucos (Inter Brasil Alimentos) nasceu com a missão de fornecer sucos de alta qualidade para o mercado profissional de food service. Com mais de duas décadas de experiência, nos consolidamos como referência no setor, atendendo hotéis, restaurantes, cozinhas industriais, escolas, hospitais e redes de fast food em todo o território nacional.</p>
-            </div>
-
-            <div class="about-block">
-              <h2>Estrutura Industrial</h2>
-              <p>Nossa fábrica em Assis/SP conta com equipamentos de última geração e rigoroso controle de qualidade em cada etapa do processo produtivo. Trabalhamos com frutas frescas vindas dos melhores polos produtores do Brasil, garantindo produtos com sabor consistente, segurança alimentar e total transparência nas informações de rótulo, ingredientes e tabela nutricional.</p>
-            </div>
-
-            <div class="about-block">
-              <h2>Por que escolher a Tutty</h2>
-              <div class="about-pillars">
-                <div class="pillar">
-                  <span class="material-icons-outlined">verified</span>
-                  <h3>Padrão de Qualidade</h3>
-                  <p>Controle rigoroso de qualidade em todas as etapas de produção</p>
-                </div>
-                <div class="pillar">
-                  <span class="material-icons-outlined">precision_manufacturing</span>
-                  <h3>Tecnologia</h3>
-                  <p>Equipamentos de última geração para máxima eficiência produtiva</p>
-                </div>
-                <div class="pillar">
-                  <span class="material-icons-outlined">thumb_up</span>
-                  <h3>Consistência</h3>
-                  <p>Mesmo sabor, mesma qualidade em cada lote produzido</p>
-                </div>
-                <div class="pillar">
-                  <span class="material-icons-outlined">security</span>
-                  <h3>Segurança Alimentar</h3>
-                  <p>Processos que garantem total segurança para o consumidor final</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-block">
-              <h2>Atuação Nacional</h2>
-              <p>Contamos com uma ampla rede de distribuidores regionais presentes nos estados de São Paulo, Rio de Janeiro, Minas Gerais, Paraná, Santa Catarina, Rio Grande do Sul, Goiás, Mato Grosso e Mato Grosso do Sul, garantindo abastecimento confiável em todo o país.</p>
-            </div>
-
-            <div class="about-contact">
-              <h2>Contato</h2>
-              <div class="contact-grid">
-                <div class="contact-item">
-                  <span class="material-icons-outlined">location_on</span>
-                  <div>
-                    <strong>Endereço</strong>
-                    <p>Av. Sebastião Mendes de Brito, 225<br>Vila Jardim Aeroporto, Assis - SP<br>CEP: 19815-140</p>
-                  </div>
-                </div>
-                <div class="contact-item">
-                  <span class="material-icons-outlined">phone</span>
-                  <div>
-                    <strong>Telefones</strong>
-                    <p>(18) 3323-7752<br>(18) 3324-9209<br>(18) 98154-4334 (Comercial)</p>
-                  </div>
-                </div>
-                <div class="contact-item">
-                  <span class="material-icons-outlined">email</span>
-                  <div>
-                    <strong>Redes Sociais</strong>
-                    <p>@tuttysucos (Instagram)<br>Tutty Sucos (Facebook)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- SUPPORT PAGE -->
-    <div class="page" id="page-support" style="display:none">
-      <section class="support-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Suporte</span>
-          </div>
-          <h1>Central de Suporte</h1>
-          <p class="section-subtitle">Como podemos ajudar?</p>
-
-          <div class="support-grid">
-            <div class="faq-section">
-              <h2>Perguntas Frequentes</h2>
-
-              <div class="faq-category">
-                <h3>Compras</h3>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Como faço meu primeiro pedido?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>Cadastre sua empresa com CNPJ, aguarde a aprovação do cadastro e pronto — você já pode navegar pelo catálogo e fazer seu pedido com condições B2B personalizadas.</p>
-                  </div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Qual o pedido mínimo?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>O pedido mínimo varia conforme a região e o tipo de produto. Consulte as condições no momento do checkout ou entre em contato com o comercial.</p>
-                  </div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Como funcionam os descontos por volume?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>Oferecemos descontos progressivos: quanto maior a quantidade, melhor o preço por caixa. As faixas de desconto são exibidas automaticamente na página de cada produto.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="faq-category">
-                <h3>Logística</h3>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Qual o prazo de entrega?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>O prazo varia de acordo com a região. Para o estado de São Paulo, em geral de 3 a 5 dias úteis. Para outros estados, de 5 a 10 dias úteis. O prazo exato é informado no checkout.</p>
-                  </div>
-                </div>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Posso agendar entregas recorrentes?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>Sim! Na área "Pedidos Recorrentes" do seu painel, você pode configurar entregas semanais, quinzenais ou mensais com o mix de produtos que preferir.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="faq-category">
-                <h3>Equipamentos em Comodato</h3>
-                <div class="faq-item" onclick="toggleFaq(this)">
-                  <div class="faq-question">
-                    <span>Como funciona o comodato de refresqueiras?</span>
-                    <span class="material-icons-outlined">expand_more</span>
-                  </div>
-                  <div class="faq-answer">
-                    <p>Disponibilizamos refresqueiras e dispensadores post-mix em regime de comodato para clientes com volume mensal mínimo. Entre em contato com o comercial para conhecer as condições.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="support-contact">
-              <div class="support-card">
-                <h3>Fale Conosco</h3>
-                <div class="support-channels">
-                  <a href="tel:1833237752" class="channel">
-                    <span class="material-icons-outlined">phone</span>
-                    <div>
-                      <strong>Telefone</strong>
-                      <span>(18) 3323-7752</span>
-                      <span class="channel-hours">Seg a Sex, 8h às 18h</span>
-                    </div>
-                  </a>
-                  <a href="https://wa.me/5518981544334" target="_blank" rel="noopener" class="channel">
-                    <span class="material-icons-outlined">chat</span>
-                    <div>
-                      <strong>WhatsApp Business</strong>
-                      <span>(18) 98154-4334</span>
-                      <span class="channel-hours">Seg a Sex, 8h às 18h</span>
-                    </div>
-                  </a>
-                  <a href="mailto:comercial@tuttysucos.com.br" class="channel">
-                    <span class="material-icons-outlined">email</span>
-                    <div>
-                      <strong>E-mail</strong>
-                      <span>comercial@tuttysucos.com.br</span>
-                      <span class="channel-hours">Resposta em até 24h</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- PRIVACY POLICY PAGE -->
-    <div class="page" id="page-privacy" style="display:none">
-      <section class="about-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Política de Privacidade</span>
-          </div>
-          <div class="about-hero">
-            <h1>Política de Privacidade</h1>
-            <p class="lead">Última atualização: Março de 2026</p>
-          </div>
-          <div class="about-content">
-            <div class="about-block">
-              <h2>1. Informações Coletadas</h2>
-              <p>A plataforma B2B da Tutty Sucos coleta os seguintes dados durante o cadastro e uso da plataforma:</p>
-              <ul>
-                <li><strong>Dados cadastrais:</strong> razão social, CNPJ, nome do responsável, e-mail corporativo, telefone e endereço de entrega.</li>
-                <li><strong>Dados de pedidos:</strong> histórico de compras, volumes, frequência e preferências de produtos.</li>
-                <li><strong>Dados de navegação:</strong> páginas visitadas, tempo de sessão e interações com o catálogo.</li>
-              </ul>
-              <p>Todos os dados são fornecidos voluntariamente pelo usuário no momento do cadastro ou durante o uso da plataforma.</p>
-            </div>
-            <div class="about-block">
-              <h2>2. Uso das Informações</h2>
-              <p>As informações coletadas são utilizadas exclusivamente para:</p>
-              <ul>
-                <li>Processar e gerenciar pedidos B2B;</li>
-                <li>Aplicar tabelas de preços personalizadas conforme o volume de compra;</li>
-                <li>Comunicação comercial sobre novos produtos, promoções e condições especiais;</li>
-                <li>Emissão de notas fiscais e documentos comerciais;</li>
-                <li>Melhoria contínua da plataforma e experiência do usuário.</li>
-              </ul>
-            </div>
-            <div class="about-block">
-              <h2>3. Armazenamento e Segurança</h2>
-              <p>Os dados são armazenados de forma segura utilizando criptografia e controles de acesso. O acesso aos dados é restrito apenas a funcionários autorizados da Inter Brasil Alimentos que necessitam dessas informações para processar pedidos e fornecer suporte ao cliente.</p>
-              <p>A plataforma utiliza armazenamento local (localStorage) do navegador para manter a sessão do usuário. Esses dados permanecem apenas no dispositivo do usuário e podem ser removidos a qualquer momento limpando os dados do navegador.</p>
-            </div>
-            <div class="about-block">
-              <h2>4. Direitos do Titular (LGPD)</h2>
-              <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), você tem direito a:</p>
-              <ul>
-                <li><strong>Acesso:</strong> solicitar cópia de todos os dados pessoais que mantemos sobre você;</li>
-                <li><strong>Correção:</strong> solicitar a correção de dados incompletos ou desatualizados;</li>
-                <li><strong>Exclusão:</strong> solicitar a remoção dos seus dados pessoais da nossa base;</li>
-                <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado;</li>
-                <li><strong>Revogação:</strong> revogar o consentimento para uso dos dados a qualquer momento.</li>
-              </ul>
-            </div>
-            <div class="about-block">
-              <h2>5. Cookies</h2>
-              <p>A plataforma utiliza cookies e tecnologias similares para:</p>
-              <ul>
-                <li>Manter sua sessão ativa durante a navegação;</li>
-                <li>Lembrar suas preferências de filtro e visualização;</li>
-                <li>Garantir a segurança da sua conta.</li>
-              </ul>
-              <p>Não utilizamos cookies de rastreamento de terceiros ou para fins publicitários.</p>
-            </div>
-            <div class="about-block">
-              <h2>6. Contato</h2>
-              <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato:</p>
-              <ul>
-                <li><strong>E-mail:</strong> comercial@tuttysucos.com.br</li>
-                <li><strong>Telefone:</strong> (18) 3323-7752</li>
-                <li><strong>Endereço:</strong> Av. Sebastião Mendes de Brito, 225 — Assis/SP — CEP 19815-140</li>
-              </ul>
-              <p><strong>Razão Social:</strong> Inter Brasil Alimentos Ind. Exp. Imp. Ltda — CNPJ: 11.377.334/0001-03</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- TERMS OF USE PAGE -->
-    <div class="page" id="page-terms" style="display:none">
-      <section class="about-section">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="#" onclick="showPage('home')">Início</a> <span>/</span> <span>Termos de Uso</span>
-          </div>
-          <div class="about-hero">
-            <h1>Termos de Uso</h1>
-            <p class="lead">Última atualização: Março de 2026</p>
-          </div>
-          <div class="about-content">
-            <div class="about-block">
-              <h2>1. Aceitação dos Termos</h2>
-              <p>Ao acessar e utilizar a plataforma B2B da Tutty Sucos, você declara ter lido, compreendido e aceito integralmente estes Termos de Uso. A plataforma é destinada exclusivamente a pessoas jurídicas (CNPJ ativo) do segmento de food service, hotelaria, restaurantes, escolas, hospitais e distribuidores.</p>
-              <p>Caso não concorde com qualquer disposição destes termos, solicitamos que não utilize a plataforma.</p>
-            </div>
-            <div class="about-block">
-              <h2>2. Cadastro e Aprovação</h2>
-              <p>O acesso à plataforma requer cadastro prévio com informações da empresa. Após o envio do cadastro:</p>
-              <ul>
-                <li>A equipe comercial da Tutty Sucos analisará as informações fornecidas;</li>
-                <li>A aprovação será comunicada por e-mail ao responsável cadastrado;</li>
-                <li>Somente após a aprovação o cliente terá acesso às tabelas de preços e poderá realizar pedidos;</li>
-                <li>A Tutty Sucos reserva-se o direito de recusar cadastros sem necessidade de justificativa.</li>
-              </ul>
-              <p>O usuário é responsável pela veracidade das informações cadastradas e pela segurança de suas credenciais de acesso.</p>
-            </div>
-            <div class="about-block">
-              <h2>3. Pedidos e Pedido Mínimo</h2>
-              <p>Os pedidos realizados pela plataforma estão sujeitos às seguintes condições:</p>
-              <ul>
-                <li>Valor mínimo de pedido: R$ 150,00;</li>
-                <li>Os pedidos são confirmados por e-mail e processados em dias úteis;</li>
-                <li>A disponibilidade dos produtos está sujeita ao estoque;</li>
-                <li>A Tutty Sucos poderá cancelar pedidos em caso de indisponibilidade, notificando o cliente.</li>
-              </ul>
-            </div>
-            <div class="about-block">
-              <h2>4. Preços e Pagamento</h2>
-              <p>Os preços praticados na plataforma seguem o sistema de tabelas progressivas (A a E), baseadas no volume de compra por pedido:</p>
-              <ul>
-                <li>Quanto maior o volume, melhor a tabela de preços aplicada;</li>
-                <li>Os preços podem ser alterados sem aviso prévio;</li>
-                <li>Formas de pagamento aceitas: boleto bancário, transferência bancária e PIX;</li>
-                <li>Condições especiais de pagamento podem ser negociadas com o comercial.</li>
-              </ul>
-            </div>
-            <div class="about-block">
-              <h2>5. Entregas</h2>
-              <p>As entregas são realizadas conforme as seguintes condições:</p>
-              <ul>
-                <li>Prazo estimado de entrega: 3 a 7 dias úteis, conforme a região;</li>
-                <li>O frete é calculado com base no volume do pedido e localidade de entrega;</li>
-                <li>A Tutty Sucos atende os estados de SP, RJ, MG, PR, SC, RS, GO, MT e MS;</li>
-                <li>Pedidos acima de determinado valor podem ter frete grátis (consulte o comercial).</li>
-              </ul>
-            </div>
-            <div class="about-block">
-              <h2>6. Propriedade Intelectual</h2>
-              <p>Todo o conteúdo da plataforma — incluindo marcas, logotipos, imagens, textos, layout e código-fonte — é de propriedade exclusiva da Inter Brasil Alimentos Ind. Exp. Imp. Ltda. É proibida a reprodução, distribuição ou uso não autorizado de qualquer material sem consentimento prévio por escrito.</p>
-            </div>
-            <div class="about-block">
-              <h2>7. Contato</h2>
-              <p>Para dúvidas sobre estes termos ou sobre a plataforma:</p>
-              <ul>
-                <li><strong>E-mail:</strong> comercial@tuttysucos.com.br</li>
-                <li><strong>Telefone:</strong> (18) 3323-7752</li>
-                <li><strong>WhatsApp:</strong> (18) 98154-4334</li>
-              </ul>
-              <p><strong>Foro:</strong> Fica eleito o foro da Comarca de Assis/SP para dirimir quaisquer questões oriundas destes Termos de Uso.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="page" id="page-admin" style="display:none">
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <h2><span class="material-icons-outlined">admin_panel_settings</span> Painel Administrativo</h2>
-            <p>Gerencie preços, regras de volume e pedido mínimo</p>
-          </div>
-
-          <!-- Regras Gerais -->
-          <div class="admin-section">
-            <h3><span class="material-icons-outlined">settings</span> Regras Gerais</h3>
-            <div class="admin-form-grid">
-              <div class="admin-field">
-                <label>Pedido Mínimo (R$)</label>
-                <input type="number" id="adminMinOrder" step="0.01" min="0">
-              </div>
-            </div>
-          </div>
-
-          <!-- Volume Tiers -->
-          <div class="admin-section">
-            <h3><span class="material-icons-outlined">table_chart</span> Volumes Mínimos por Tabela</h3>
-            <p class="admin-desc">Defina a quantidade mínima (fardos ou unidades) para cada tabela de preço e tamanho de produto.</p>
-            <div class="admin-volume-tiers" id="adminVolumeTiers">
-              <!-- Filled by JS -->
-            </div>
-          </div>
-
-          <!-- Product Prices -->
-          <div class="admin-section">
-            <h3><span class="material-icons-outlined">price_change</span> Preços dos Produtos</h3>
-            <div class="admin-filter-bar">
-              <label>Filtrar por linha:</label>
-              <select id="adminLineFilter" onchange="renderAdminProducts()">
-                <option value="">Todos</option>
-                <option value="integral">Suco Integral</option>
-                <option value="laranjada">Laranjada da Roça</option>
-                <option value="nectar">Néctar</option>
-              </select>
-              <label>Filtrar por volume:</label>
-              <select id="adminVolumeFilter" onchange="renderAdminProducts()">
-                <option value="">Todos</option>
-                <option value="300ml">300ml</option>
-                <option value="900ml">900ml</option>
-                <option value="1.5L">1,5L</option>
-                <option value="2L">2L</option>
-                <option value="3L">3L</option>
-                <option value="Bag 5L">Bag 5L</option>
-                <option value="Galão 5L">Galão 5L</option>
-              </select>
-            </div>
-            <div class="admin-products-table-wrapper">
-              <table class="admin-products-table" id="adminProductsTable">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Produto</th>
-                    <th>Volume</th>
-                    <th>Tab. A</th>
-                    <th>Tab. B</th>
-                    <th>Tab. C</th>
-                    <th>Tab. D</th>
-                    <th>Tab. E</th>
-                  </tr>
-                </thead>
-                <tbody id="adminProductsBody">
-                  <!-- Filled by JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- User Management -->
-          <div class="admin-section">
-            <h3><span class="material-icons-outlined">group</span> Gestão de Usuários</h3>
-            <p class="admin-desc">Aprove ou rejeite cadastros de clientes. Somente usuários aprovados podem ver preços e fazer pedidos.</p>
-            <div class="admin-products-table-wrapper">
-              <table class="admin-products-table">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Empresa</th>
-                    <th>CNPJ</th>
-                    <th>E-mail</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tbody id="adminUsersBody">
-                  <!-- Filled by JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Actions -->
-          <div class="admin-actions">
-            <button class="btn btn-primary btn-lg" onclick="saveAdminChanges()">
-              <span class="material-icons-outlined">save</span> Salvar Alterações
-            </button>
-            <button class="btn btn-outline" onclick="exportPrices()">
-              <span class="material-icons-outlined">download</span> Exportar Tabela
-            </button>
-            <button class="btn btn-outline" onclick="resetAdminChanges()">
-              <span class="material-icons-outlined">restart_alt</span> Restaurar Padrão
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <img src="images/brands/logo-footer.png" alt="Tutty Sucos" class="footer-logo-img">
+      <div class="footer-grid reveal">
+        <div class="footer-brand">
+          <img src="images/brands/logo-footer.png" alt="Tutty Sucos">
+          <p>Sucos integrais, néctares e concentrados de alta qualidade para o mercado profissional de food service. Fábrica própria em Assis-SP com distribuição em todo o Brasil.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/tuttysucos/" target="_blank" rel="noopener" aria-label="Instagram">&#128247;</a>
+            <a href="https://www.facebook.com/tuttysucos/" target="_blank" rel="noopener" aria-label="Facebook">&#128266;</a>
+            <a href="https://wa.me/5518981544334" target="_blank" rel="noopener" aria-label="WhatsApp">&#128172;</a>
           </div>
-          <p>Há mais de 20 anos oferecendo sucos de qualidade para o food service brasileiro.</p>
-          <p class="footer-company">Inter Brasil Alimentos Ind. Exp. Imp. Ltda<br>CNPJ: 11.377.334/0001-03</p>
+          <div class="footer-seals">
+            <span class="footer-seal">Fábrica certificada</span>
+            <span class="footer-seal">Atendimento B2B especializado</span>
+          </div>
         </div>
         <div class="footer-col">
-          <h4>Institucional</h4>
-          <a href="#" onclick="showPage('about')">Sobre a Tutty</a>
-          <a href="#" onclick="showPage('catalog')">Catálogo</a>
-          <a href="#" onclick="showPage('support')">Suporte</a>
-          <a href="#" onclick="showPage('privacy')">Política de Privacidade</a>
-          <a href="#" onclick="showPage('terms')">Termos de Uso</a>
+          <h4>Links Rápidos</h4>
+          <a href="index-new.html">Home</a>
+          <a href="#quem-somos">Quem Somos</a>
+          <a href="marketplace.html">Marketplace</a>
+          <a href="quero-tutty.html">Quero Tutty</a>
+          <a href="seja-distribuidor.html">Seja Distribuidor</a>
+          <a href="loja-fabrica.html">Loja de Fábrica</a>
         </div>
         <div class="footer-col">
           <h4>Produtos</h4>
-          <a href="#" onclick="filterCatalog('integral')">Sucos Integrais</a>
-          <a href="#" onclick="filterCatalog('laranjada')">Laranjada da Roça</a>
-          <a href="#" onclick="filterCatalog('nectar')">Néctares</a>
+          <a href="marketplace.html#integrais">Sucos Integrais</a>
+          <a href="marketplace.html#nectares">Néctares</a>
+          <a href="marketplace.html#concentrados">Concentrados</a>
+          <a href="marketplace.html#laranjada">Laranjada da Roça</a>
+          <a href="little-tuttys.html">Little Tuttys</a>
         </div>
         <div class="footer-col">
           <h4>Contato</h4>
-          <p><span class="material-icons-outlined" style="font-size:16px;vertical-align:middle">location_on</span> Av. Sebastião Mendes de Brito, 225<br>Assis - SP | CEP: 19815-140</p>
-          <p><span class="material-icons-outlined" style="font-size:16px;vertical-align:middle">phone</span> (18) 3323-7752</p>
-          <p><span class="material-icons-outlined" style="font-size:16px;vertical-align:middle">chat</span> (18) 98154-4334</p>
+          <a href="tel:1833237752">(18) 3323-7752</a>
+          <a href="https://wa.me/5518981544334" target="_blank" rel="noopener">(18) 98154-4334 WhatsApp</a>
+          <a href="mailto:comercial@tuttysucos.com.br">comercial@tuttysucos.com.br</a>
+          <a href="#">Assis - SP, Brasil</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Tutty Sucos — Inter Brasil Alimentos. Todos os direitos reservados.</p>
+      <div class="footer-bottom reveal">
+        <p>&copy; 2026 Tutty Sucos &middot; Inter Brasil Alimentos</p>
       </div>
     </div>
   </footer>
 
-  <!-- Netlify Forms (hidden, detected at deploy) -->
-  <form name="equipment-request" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="nome">
-    <input type="email" name="email">
-    <input type="text" name="empresa">
-    <input type="text" name="cnpj">
-    <input type="text" name="telefone">
-    <textarea name="mensagem"></textarea>
-    <input type="text" name="bot-field">
-  </form>
-  <form name="pedido-tutty" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="pedido-numero">
-    <input type="text" name="cliente-nome">
-    <input type="email" name="cliente-email">
-    <input type="text" name="cliente-empresa">
-    <input type="text" name="cliente-cnpj">
-    <textarea name="itens"></textarea>
-    <input type="text" name="valor-total">
-    <input type="text" name="bot-field">
-  </form>
+  <!-- ═══════════════════════════════════════════════════
+       WHATSAPP FLOATING BUTTON
+       ═══════════════════════════════════════════════════ -->
+  <a href="https://wa.me/5518981544334" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.742 3.052 9.38L1.056 31.2l6.064-1.952A15.9 15.9 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.594c-.39 1.1-1.932 2.014-3.164 2.28-.844.18-1.946.322-5.656-1.216-4.746-1.966-7.8-6.78-8.034-7.094-.226-.314-1.896-2.524-1.896-4.814s1.2-3.414 1.626-3.882c.39-.428.924-.624 1.244-.624.15 0 .286.008.408.014.426.018.64.044.92.714.35.836 1.206 2.934 1.312 3.148.108.214.214.494.074.788-.132.3-.25.434-.464.682-.214.248-.418.438-.632.706-.196.232-.418.48-.176.916.242.434 1.076 1.776 2.312 2.878 1.59 1.416 2.928 1.856 3.344 2.062.316.156.694.132.944-.132.318-.338.71-.898 1.108-1.454.282-.396.64-.446.988-.3.352.142 2.234 1.054 2.616 1.246.382.192.636.29.73.446.092.156.092.906-.298 2.006z"/>
+    </svg>
+  </a>
 
-  <script src="js/products.js"></script>
-  <script src="js/app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
