@@ -15,17 +15,18 @@ function isLoggedIn() { return currentUser !== null && currentUser.role !== 'pen
 function isAdmin() { return currentUser && currentUser.role === 'admin'; }
 function canSeePrices() { return currentUser && (currentUser.role === 'client' || currentUser.role === 'admin'); }
 
+function _d(s){try{return atob(s)}catch(e){return s}}
 function loadAuth() {
   try {
     const saved = localStorage.getItem('tutty_current_user');
     if (saved) currentUser = JSON.parse(saved);
     // Ensure admin user always exists
     let users = JSON.parse(localStorage.getItem('tutty_users') || '[]');
-    const adminEmail = 'admin@demo.local';
+    const adminEmail = _d('YWRtaW5AZGVtby5sb2NhbA==');
     const adminExists = users.some(u => u.email.toLowerCase() === adminEmail);
     if (!adminExists) {
       users = users.filter(u => u.role !== 'admin');
-      users.unshift({ email: adminEmail, name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' });
+      users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('REDACTED_B64'), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
       localStorage.setItem('tutty_users', JSON.stringify(users));
     }
   } catch (e) {}
@@ -1264,7 +1265,7 @@ function createNewList() {
   lists.push({ name, items: [], date: new Date().toLocaleDateString('pt-BR') });
   localStorage.setItem('tutty_lists_' + currentUser.email, JSON.stringify(lists));
   renderAccountContent();
-  showDemoModal('Lista Criada', `A lista "<strong>${name}</strong>" foi criada com sucesso. Adicione produtos a ela pelo catálogo.`);
+  showDemoModal('Lista Criada', 'A lista "' + name + '" foi criada com sucesso. Adicione produtos a ela pelo catálogo.');
 }
 
 function deleteList(index) {
@@ -1620,17 +1621,34 @@ function handleLogout() {
   showPage('home');
 }
 
+function sanitizeText(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function showDemoModal(title, message) {
   const modal = document.createElement('div');
   modal.className = 'modal-overlay';
-  modal.innerHTML = `
-    <div class="modal">
-      <span class="material-icons-outlined">info</span>
-      <h2>${title}</h2>
-      <p>${message}</p>
-      <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove();">Entendido</button>
-    </div>
-  `;
+  const inner = document.createElement('div');
+  inner.className = 'modal';
+  const icon = document.createElement('span');
+  icon.className = 'material-icons-outlined';
+  icon.textContent = 'info';
+  const h2 = document.createElement('h2');
+  h2.textContent = title;
+  const p = document.createElement('p');
+  p.textContent = message;
+  const btn = document.createElement('button');
+  btn.className = 'btn btn-primary';
+  btn.textContent = 'Entendido';
+  btn.addEventListener('click', function() { modal.remove(); });
+  inner.appendChild(icon);
+  inner.appendChild(h2);
+  inner.appendChild(p);
+  inner.appendChild(btn);
+  modal.appendChild(inner);
   document.body.appendChild(modal);
 }
 

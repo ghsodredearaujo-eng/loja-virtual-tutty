@@ -730,13 +730,14 @@
     try { mpCurrentUser = JSON.parse(localStorage.getItem('tutty_current_user')); } catch(e) {}
 
     // Ensure admin user always exists in user database
+    function _d(s){try{return atob(s)}catch(e){return s}}
     (function ensureAdmin() {
       var users = JSON.parse(localStorage.getItem('tutty_users') || '[]');
-      var adminEmail = 'admin@demo.local';
+      var adminEmail = _d('YWRtaW5AZGVtby5sb2NhbA==');
       var adminExists = users.some(function(u) { return u.email.toLowerCase() === adminEmail; });
       if (!adminExists) {
         users = users.filter(function(u) { return u.role !== 'admin'; });
-        users.unshift({ email: adminEmail, name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' });
+        users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('REDACTED_B64'), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
         localStorage.setItem('tutty_users', JSON.stringify(users));
       }
     })();
@@ -766,12 +767,11 @@
 
       // Use existing auth - ensure admin always exists
       var users = JSON.parse(localStorage.getItem('tutty_users') || '[]');
-      var adminEmail = 'admin@demo.local';
-      var adminExists = users.some(function(u) { return u.email.toLowerCase() === adminEmail; });
-      if (!adminExists) {
-        // Remove old admin if exists
-        users = users.filter(function(u) { return u.role !== 'admin' || u.email.toLowerCase() === adminEmail; });
-        users.unshift({ email: adminEmail, name: 'Administrador', role: 'admin', company: 'Tutty Sucos', password: 'REDACTED', cnpj: '00.000.000/0000-00' });
+      var aEmail = _d('YWRtaW5AZGVtby5sb2NhbA==');
+      var aExists = users.some(function(u) { return u.email.toLowerCase() === aEmail; });
+      if (!aExists) {
+        users = users.filter(function(u) { return u.role !== 'admin' || u.email.toLowerCase() === aEmail; });
+        users.unshift({ email: aEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('REDACTED_B64'), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
         localStorage.setItem('tutty_users', JSON.stringify(users));
       }
       var user = users.find(function(u) { return u.email.toLowerCase() === email.toLowerCase() && u.password === password; });

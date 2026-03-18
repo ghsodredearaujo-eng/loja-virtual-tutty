@@ -208,9 +208,70 @@ function initParallax() {
 }
 
 /* ═══════════════════════════════════════════════════
+   SECURITY — Input Validation
+   ═══════════════════════════════════════════════════ */
+function validateForm(formEl) {
+  var isValid = true;
+  var requiredInputs = formEl.querySelectorAll('[required]');
+  requiredInputs.forEach(function(input) {
+    input.style.borderColor = '';
+    if (!input.value.trim()) {
+      input.style.borderColor = '#e53e3e';
+      isValid = false;
+    }
+  });
+
+  // Validate email fields
+  var emailInputs = formEl.querySelectorAll('input[type="email"]');
+  emailInputs.forEach(function(input) {
+    if (input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+      input.style.borderColor = '#e53e3e';
+      isValid = false;
+    }
+  });
+
+  // Validate CNPJ fields (basic: 14+ digits)
+  var cnpjInputs = formEl.querySelectorAll('input[name*="cnpj"], input[name*="CNPJ"]');
+  cnpjInputs.forEach(function(input) {
+    if (input.value) {
+      var digits = input.value.replace(/\D/g, '');
+      if (digits.length < 14) {
+        input.style.borderColor = '#e53e3e';
+        isValid = false;
+      }
+    }
+  });
+
+  // Validate phone/WhatsApp fields (basic: 10+ digits)
+  var phoneInputs = formEl.querySelectorAll('input[name*="whatsapp"], input[name*="telefone"], input[name*="celular"]');
+  phoneInputs.forEach(function(input) {
+    if (input.value) {
+      var digits = input.value.replace(/\D/g, '');
+      if (digits.length < 10) {
+        input.style.borderColor = '#e53e3e';
+        isValid = false;
+      }
+    }
+  });
+
+  // Sanitize all text inputs (strip script tags)
+  var textInputs = formEl.querySelectorAll('input[type="text"], textarea');
+  textInputs.forEach(function(input) {
+    input.value = input.value.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    input.value = input.value.replace(/on\w+\s*=/gi, '');
+  });
+
+  if (!isValid) {
+    showModal('Campos inválidos', 'Por favor, verifique os campos destacados em vermelho e corrija as informações.');
+  }
+  return isValid;
+}
+
+/* ═══════════════════════════════════════════════════
    FORM SUBMISSION — Netlify Forms
    ═══════════════════════════════════════════════════ */
 function submitNetlifyForm(formEl, successMsg) {
+  if (!validateForm(formEl)) return;
   var data = new URLSearchParams(new FormData(formEl));
 
   var btn = formEl.querySelector('button[type="submit"]');
@@ -238,17 +299,42 @@ function submitNetlifyForm(formEl, successMsg) {
 }
 
 /* ═══════════════════════════════════════════════════
-   MODAL — Generic
+   SECURITY — Sanitization Helper
+   ═══════════════════════════════════════════════════ */
+function sanitizeHTML(str) {
+  if (!str) return '';
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/* ═══════════════════════════════════════════════════
+   MODAL — Generic (XSS-safe)
    ═══════════════════════════════════════════════════ */
 function showModal(title, message) {
   var overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn 0.3s';
-  overlay.innerHTML =
-    '<div style="background:#fff;border-radius:18px;padding:40px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.25)">' +
-    '<h2 style="font-size:1.3rem;color:#0B5C28;margin-bottom:12px">' + title + '</h2>' +
-    '<p style="font-size:0.95rem;color:#555;line-height:1.6;margin-bottom:24px">' + message + '</p>' +
-    '<button onclick="this.closest(\'div\').parentElement.remove()" style="background:#f7931d;color:#fff;border:none;padding:12px 32px;border-radius:999px;font-weight:600;font-size:0.95rem;cursor:pointer;font-family:inherit">Entendido</button>' +
-    '</div>';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px';
+
+  var modal = document.createElement('div');
+  modal.style.cssText = 'background:#fff;border-radius:18px;padding:40px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.25)';
+
+  var h2 = document.createElement('h2');
+  h2.style.cssText = 'font-size:1.3rem;color:#0B5C28;margin-bottom:12px';
+  h2.textContent = title;
+
+  var p = document.createElement('p');
+  p.style.cssText = 'font-size:0.95rem;color:#555;line-height:1.6;margin-bottom:24px';
+  p.textContent = message;
+
+  var btn = document.createElement('button');
+  btn.style.cssText = 'background:#f7931d;color:#fff;border:none;padding:12px 32px;border-radius:999px;font-weight:600;font-size:0.95rem;cursor:pointer;font-family:inherit';
+  btn.textContent = 'Entendido';
+  btn.addEventListener('click', function() { overlay.remove(); });
+
+  modal.appendChild(h2);
+  modal.appendChild(p);
+  modal.appendChild(btn);
+  overlay.appendChild(modal);
   document.body.appendChild(overlay);
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay) overlay.remove();
