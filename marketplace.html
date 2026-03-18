@@ -572,11 +572,10 @@
           <!-- Filter Bar -->
           <div class="filter-bar">
             <div class="filter-btns">
-              <button class="filter-btn active" onclick="filterByLine('all')">Todos</button>
-              <button class="filter-btn" onclick="filterByLine('integral')">Integrais</button>
-              <button class="filter-btn" onclick="filterByLine('laranjada')">Laranjada</button>
-              <button class="filter-btn" onclick="filterByLine('nectar')">N&eacute;ctares</button>
-              <button class="filter-btn" onclick="filterByLine('concentrado')">Concentrados</button>
+              <button class="filter-btn active" onclick="filterByLine('all', this)">Todos</button>
+              <button class="filter-btn" onclick="filterByLine('integral', this)">Integrais</button>
+              <button class="filter-btn" onclick="filterByLine('laranjada', this)">Laranjada</button>
+              <button class="filter-btn" onclick="filterByLine('nectar', this)">N&eacute;ctares</button>
             </div>
             <select class="filter-select" id="flavorFilter" onchange="applyFilters()">
               <option value="all">Todos os sabores</option>
@@ -875,10 +874,10 @@
     }
 
     // Filter by line (button click)
-    function filterByLine(line) {
+    function filterByLine(line, btn) {
       currentLineFilter = line;
       document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-      event.target.classList.add('active');
+      if (btn) btn.classList.add('active');
       renderProducts(line);
     }
 

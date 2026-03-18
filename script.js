@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initAccordion();
   initDropdowns();
   initParallax();
+  initAuthIndicator();
 });
 
 /* ═══════════════════════════════════════════════════
@@ -339,6 +340,55 @@ function showModal(title, message) {
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay) overlay.remove();
   });
+}
+
+/* ═══════════════════════════════════════════════════
+   AUTH INDICATOR — Navbar user badge + logout
+   ═══════════════════════════════════════════════════ */
+function initAuthIndicator() {
+  var user = null;
+  try { user = JSON.parse(localStorage.getItem('tutty_current_user')); } catch(e) {}
+
+  var navLinks = document.querySelector('.nav-links');
+  if (!navLinks) return;
+
+  if (user && user.name) {
+    // Create user badge
+    var badge = document.createElement('div');
+    badge.className = 'nav-user-badge';
+    badge.innerHTML = '<span class="nav-user-name">' + sanitizeHTML(user.name.split(' ')[0]) + '</span>';
+
+    var logoutBtn = document.createElement('a');
+    logoutBtn.href = '#';
+    logoutBtn.className = 'nav-user-logout';
+    logoutBtn.textContent = 'Sair';
+    logoutBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('tutty_current_user');
+      window.location.reload();
+    });
+    badge.appendChild(logoutBtn);
+    navLinks.appendChild(badge);
+
+    // Also add to mobile menu
+    var mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) {
+      var mobileBadge = document.createElement('div');
+      mobileBadge.className = 'mobile-user-badge';
+      mobileBadge.innerHTML = '<span>' + sanitizeHTML(user.name.split(' ')[0]) + '</span>';
+      var mobileLogout = document.createElement('a');
+      mobileLogout.href = '#';
+      mobileLogout.textContent = 'Sair da conta';
+      mobileLogout.style.cssText = 'color:#e74c3c;font-weight:600;';
+      mobileLogout.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('tutty_current_user');
+        window.location.reload();
+      });
+      mobileBadge.appendChild(mobileLogout);
+      mobileMenu.appendChild(mobileBadge);
+    }
+  }
 }
 
 /* ═══════════════════════════════════════════════════
