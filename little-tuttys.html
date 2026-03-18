@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Tuttys 🍊 | Programa de Fidelidade Tutty Sucos</title>
+  <meta name="description" content="Little Tuttys: o programa de fidelidade da Tutty Sucos. Compre, acumule pontos e troque por produtos, kits exclusivos e experiências na fábrica.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/brands/logo.png" alt="Tutty Sucos">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#">Quem Somos</a>
+        <div class="nav-dropdown">
+          <a href="marketplace.html">Produtos</a>
+          <div class="dropdown-menu">
+            <a href="marketplace.html">Ver todos os produtos</a>
+          </div>
+        </div>
+        <a href="#">Onde Encontrar</a>
+        <div class="nav-dropdown">
+          <a href="#">Parceiros</a>
+          <div class="dropdown-menu">
+            <a href="quero-tutty.html">Quero Tutty</a>
+            <a href="seja-distribuidor.html">Seja Distribuidor</a>
+          </div>
+        </div>
+        <a href="loja-fabrica.html">Loja de Fábrica</a>
+        <div class="nav-dropdown">
+          <a href="#">Fale Conosco</a>
+          <div class="dropdown-menu">
+            <a href="https://wa.me/5518981544334" target="_blank">WhatsApp</a>
+            <a href="mailto:contato@tuttysucos.com.br">E-mail</a>
+          </div>
+        </div>
+        <a href="little-tuttys.html" class="nav-btn-littletuttys active">🍊 Little Tuttys</a>
+        <a href="marketplace.html" class="nav-btn-marketplace">Acessar Marketplace</a>
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="Fechar menu">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="#">Quem Somos</a>
+    <a href="#" class="mobile-accordion-toggle">Produtos</a>
+    <div class="mobile-accordion-content">
+      <a href="marketplace.html">Ver todos os produtos</a>
+    </div>
+    <a href="#">Onde Encontrar</a>
+    <a href="#" class="mobile-accordion-toggle">Parceiros</a>
+    <div class="mobile-accordion-content">
+      <a href="quero-tutty.html">Quero Tutty</a>
+      <a href="seja-distribuidor.html">Seja Distribuidor</a>
+    </div>
+    <a href="loja-fabrica.html">Loja de Fábrica</a>
+    <a href="#" class="mobile-accordion-toggle">Fale Conosco</a>
+    <div class="mobile-accordion-content">
+      <a href="https://wa.me/5518981544334" target="_blank">WhatsApp</a>
+      <a href="mailto:contato@tuttysucos.com.br">E-mail</a>
+    </div>
+    <a href="little-tuttys.html">🍊 Little Tuttys</a>
+    <a href="marketplace.html">Acessar Marketplace</a>
+  </div>
+
+  <!-- Hero (full, NOT compact) -->
+  <section class="hero reveal" style="background: linear-gradient(135deg, var(--orange) 0%, var(--yellow) 100%);">
+    <div class="hero-overlay" style="background: rgba(0,0,0,0.15);"></div>
+    <div class="container hero-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <h1>Little Tuttys 🍊</h1>
+      <p>O programa de fidelidade para quem ama Tutty Sucos. Compre, acumule e troque por experiências incríveis.</p>
+      <div class="hero-buttons" style="justify-content: center;">
+        <a href="#cadastro" class="btn btn-white btn-lg">Cadastre-se agora</a>
+        <a href="#login" class="btn btn-secondary btn-lg">Já sou membro — Entrar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>Como Funciona</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-step reveal reveal-delay-1">
+          <div class="timeline-num">1</div>
+          <h3>Cadastre-se</h3>
+          <p>Gratuito na loja de fábrica ou pelo site</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-2">
+          <div class="timeline-num">2</div>
+          <h3>Acumule 🍊</h3>
+          <p>A cada R$ 15 em compras = 1 Little Tutty</p>
+        </div>
+        <div class="timeline-step reveal reveal-delay-3">
+          <div class="timeline-num">3</div>
+          <h3>Troque</h3>
+          <p>Resgate produtos, kits e experiências</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Levels Section -->
+  <section class="section reveal" style="background: var(--white);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Níveis do Programa</h2>
+        <p>Quanto mais você compra, mais vantagens você desbloqueia.</p>
+      </div>
+      <div class="levels-grid">
+        <div class="level-card semente reveal reveal-delay-1">
+          <span class="level-emoji">🌱</span>
+          <h3>Semente</h3>
+          <p class="level-range">R$ 0 — R$ 199 acumulados</p>
+          <ul>
+            <li>Acumula pontos Little Tuttys</li>
+            <li>Promoções exclusivas do programa</li>
+          </ul>
+        </div>
+        <div class="level-card fruta reveal reveal-delay-2">
+          <span class="level-emoji">🍊</span>
+          <h3>Fruta</h3>
+          <p class="level-range">R$ 200 — R$ 599 acumulados</p>
+          <ul>
+            <li>+5% de desconto em todas as compras</li>
+            <li>Brinde especial no mês do aniversário</li>
+            <li>Acesso antecipado a novos sabores</li>
+          </ul>
+        </div>
+        <div class="level-card suco reveal reveal-delay-3">
+          <span class="level-emoji">🧃</span>
+          <h3>Suco</h3>
+          <p class="level-range">R$ 600+ acumulados</p>
+          <ul>
+            <li>+10% de desconto em todas as compras</li>
+            <li>Acesso a lançamentos antes de todos</li>
+            <li>Convites para eventos na fábrica</li>
+            <li>Degustações exclusivas de novos sabores</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resgates Section -->
+  <section class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2>O que você pode resgatar</h2>
+        <p>Use seus Little Tuttys para trocar por prêmios incríveis.</p>
+      </div>
+      <div class="resgate-grid">
+        <div class="resgate-card reveal reveal-delay-1">
+          <div class="resgate-points">5</div>
+          <h4>Suco Integral 300ml grátis</h4>
+          <p>Escolha o sabor que preferir</p>
+        </div>
+        <div class="resgate-card reveal reveal-delay-2">
+          <div class="resgate-points">10</div>
+          <h4>Kit Degustação 4 sabores</h4>
+          <p>Experimente nossos best-sellers</p>
+        </div>
+        <div class="resgate-card reveal reveal-delay-3">
+          <div class="resgate-points">20</div>
+          <h4>Caixa 12 unidades sortidas</h4>
+          <p>Para curtir com a família toda</p>
+        </div>
+        <div class="resgate-card reveal reveal-delay-4">
+          <div class="resgate-points">35</div>
+          <h4>Visita guiada à fábrica + degustação</h4>
+          <p>Conheça como fazemos nossos sucos</p>
+        </div>
+        <div class="resgate-card reveal reveal-delay-5">
+          <div class="resgate-points">50</div>
+          <h4>Kit Premium personalizado</h4>
+          <p>Seleção especial com seu nome</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Missions Section -->
+  <section class="section reveal" style="background: var(--white);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Missões e Desafios</h2>
+        <p>Complete missões para ganhar Little Tuttys bônus!</p>
+      </div>
+      <div class="missions-grid">
+        <div class="mission-card reveal reveal-delay-1">
+          <span class="mission-emoji">🎯</span>
+          <div>
+            <h4>Compre 3 sabores diferentes no mesmo mês</h4>
+            <p>+2 Little Tuttys bônus</p>
+          </div>
+        </div>
+        <div class="mission-card reveal reveal-delay-2">
+          <span class="mission-emoji">👫</span>
+          <div>
+            <h4>Indique um amigo que se cadastre</h4>
+            <p>+3 Little Tuttys bônus</p>
+          </div>
+        </div>
+        <div class="mission-card reveal reveal-delay-3">
+          <span class="mission-emoji">🎂</span>
+          <div>
+            <h4>Compre na semana do seu aniversário</h4>
+            <p>Little Tuttys em dobro</p>
+          </div>
+        </div>
+        <div class="mission-card reveal reveal-delay-4">
+          <span class="mission-emoji">📸</span>
+          <div>
+            <h4>Compartilhe foto com #LittleTuttys</h4>
+            <p>+1 Little Tutty bônus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login / Register Section -->
+  <section class="section reveal" id="cadastro">
+    <div class="container">
+      <div class="section-header">
+        <h2>Entre ou Cadastre-se</h2>
+        <p>Comece a acumular seus Little Tuttys agora mesmo.</p>
+      </div>
+      <div class="location-grid" style="align-items: start;">
+        <!-- Login Column -->
+        <div id="login">
+          <div class="form-container" style="box-shadow: var(--shadow-sm);">
+            <h3 style="text-align: center; color: var(--green-dark); margin-bottom: 24px; font-size: 1.2rem;">Já sou membro</h3>
+            <form onsubmit="event.preventDefault(); showModal('Em breve!', 'O login do programa Little Tuttys estará disponível em breve. Aguarde novidades!');">
+              <div class="form-group">
+                <label for="lt-cpf-login">CPF</label>
+                <input type="text" id="lt-cpf-login" name="cpf" required placeholder="000.000.000-00">
+              </div>
+              <div class="form-group">
+                <label for="lt-senha-login">Senha</label>
+                <input type="password" id="lt-senha-login" name="senha" required placeholder="Sua senha">
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Entrar</button>
+              <div class="login-links">
+                <a href="#">Esqueci minha senha</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Register Column -->
+        <div>
+          <div class="form-container" style="box-shadow: var(--shadow-sm);">
+            <h3 style="text-align: center; color: var(--green-dark); margin-bottom: 24px; font-size: 1.2rem;">Quero me cadastrar</h3>
+            <form name="little-tuttys-cadastro" netlify netlify-honeypot="bot-field" onsubmit="event.preventDefault(); submitNetlifyForm(this, 'Cadastro realizado com sucesso! Bem-vindo ao programa Little Tuttys 🍊');">
+              <input type="hidden" name="form-name" value="little-tuttys-cadastro">
+              <p style="display:none"><label>Não preencha: <input name="bot-field"></label></p>
+              <div class="form-group">
+                <label for="lt-nome">Nome completo</label>
+                <input type="text" id="lt-nome" name="nome" required placeholder="Seu nome completo">
+              </div>
+              <div class="form-group">
+                <label for="lt-cpf">CPF</label>
+                <input type="text" id="lt-cpf" name="cpf" required placeholder="000.000.000-00">
+              </div>
+              <div class="form-group">
+                <label for="lt-nascimento">Data de nascimento</label>
+                <input type="date" id="lt-nascimento" name="data-nascimento" required>
+              </div>
+              <div class="form-group">
+                <label for="lt-celular">Celular</label>
+                <input type="tel" id="lt-celular" name="celular" required placeholder="(00) 00000-0000">
+              </div>
+              <div class="form-group">
+                <label for="lt-email">E-mail</label>
+                <input type="email" id="lt-email" name="email" required placeholder="seu@email.com.br">
+              </div>
+              <div class="form-group">
+                <label for="lt-cidade">Cidade</label>
+                <input type="text" id="lt-cidade" name="cidade" required placeholder="Sua cidade">
+              </div>
+              <div class="form-group" style="margin-bottom: 24px;">
+                <label style="display: flex; align-items: flex-start; gap: 10px; font-weight: 400; cursor: pointer;">
+                  <input type="checkbox" name="aceite-regulamento" required style="width: auto; margin-top: 4px;">
+                  <span>Li e aceito o <a href="#" style="color: var(--green); font-weight: 600; text-decoration: underline;">regulamento do programa Little Tuttys</a>.</span>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Criar minha conta</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/brands/logo-footer.png" alt="Tutty Sucos">
+          <p>Mais de 20 anos levando o sabor natural da fruta para todo o Brasil. Sucos integrais, néctares e concentrados com qualidade e procedência garantida.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/tuttysucos/" target="_blank" aria-label="Instagram">📷</a>
+            <a href="https://www.facebook.com/tuttysucos/" target="_blank" aria-label="Facebook">📘</a>
+            <a href="https://wa.me/5518981544334" target="_blank" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <a href="#">Quem Somos</a>
+          <a href="#">Onde Encontrar</a>
+          <a href="loja-fabrica.html">Loja de Fábrica</a>
+          <a href="little-tuttys.html">Little Tuttys</a>
+        </div>
+        <div class="footer-col">
+          <h4>Parceiros</h4>
+          <a href="quero-tutty.html">Quero Tutty</a>
+          <a href="seja-distribuidor.html">Seja Distribuidor</a>
+          <a href="marketplace.html">Marketplace</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="tel:1833237752">(18) 3323-7752</a>
+          <a href="https://wa.me/5518981544334" target="_blank">(18) 98154-4334</a>
+          <a href="mailto:contato@tuttysucos.com.br">contato@tuttysucos.com.br</a>
+          <div class="footer-seals">
+            <span class="footer-seal">🔒 Site Seguro</span>
+            <span class="footer-seal">✓ CNPJ Ativo</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Tutty Sucos Indústria e Comércio LTDA. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5518981544334" class="whatsapp-float" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958A15.923 15.923 0 0016.004 32C24.826 32 32 24.826 32 16.004 32 7.176 24.826 0 16.004 0zm9.338 22.594c-.39 1.1-1.932 2.014-3.168 2.28-.846.18-1.95.324-5.67-1.218-4.762-1.974-7.826-6.81-8.064-7.126-.23-.316-1.932-2.574-1.932-4.908 0-2.334 1.222-3.48 1.656-3.956.39-.43 1.032-.614 1.646-.614.198 0 .376.01.536.018.434.02.652.046 .938.726.358.852 1.228 3.004 1.336 3.224.11.22.222.516.074.832-.14.316-.264.514-.514.792-.25.278-.486.492-.736.792-.228.264-.486.546-.196.998.29.452 1.29 2.128 2.77 3.448 1.906 1.698 3.462 2.242 3.992 2.48.39.178.854.138 1.168-.196.394-.42.882-1.116 1.378-1.804.352-.49.796-.552 1.226-.374.434.17 2.748 1.296 3.22 1.532.472.236.786.356.9.548.11.19.11 1.116-.28 2.214z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
