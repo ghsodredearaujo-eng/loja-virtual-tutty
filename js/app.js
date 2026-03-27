@@ -26,7 +26,7 @@ function loadAuth() {
     const adminExists = users.some(u => u.email.toLowerCase() === adminEmail);
     if (!adminExists) {
       users = users.filter(u => u.role !== 'admin');
-      users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('REDACTED_B64'), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
+      users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('REDACTED_B64'), cnpj: _d('MDAuMDAwLjAwMC8wMDAwLTAw') });
       localStorage.setItem('tutty_users', JSON.stringify(users));
     }
   } catch (e) {}

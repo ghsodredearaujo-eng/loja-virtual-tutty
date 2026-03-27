@@ -738,7 +738,7 @@
       var adminExists = users.some(function(u) { return u.email.toLowerCase() === adminEmail; });
       if (!adminExists) {
         users = users.filter(function(u) { return u.role !== 'admin'; });
-        users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('ajlBdHRBeTRIc0JuaVd3eQ=='), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
+        users.unshift({ email: adminEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('ajlBdHRBeTRIc0JuaVd3eQ=='), cnpj: _d('MDAuMDAwLjAwMC8wMDAwLTAw') });
         localStorage.setItem('tutty_users', JSON.stringify(users));
       }
     })();
@@ -772,7 +772,7 @@
       var aExists = users.some(function(u) { return u.email.toLowerCase() === aEmail; });
       if (!aExists) {
         users = users.filter(function(u) { return u.role !== 'admin' || u.email.toLowerCase() === aEmail; });
-        users.unshift({ email: aEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('ajlBdHRBeTRIc0JuaVd3eQ=='), cnpj: _d('MDAwMDAwMDAwMDAwMDAwMA==') });
+        users.unshift({ email: aEmail, name: _d('QWRtaW5pc3RyYWRvcg=='), role: 'admin', company: _d('VHV0dHkgU3Vjb3M='), password: _d('ajlBdHRBeTRIc0JuaVd3eQ=='), cnpj: _d('MDAuMDAwLjAwMC8wMDAwLTAw') });
         localStorage.setItem('tutty_users', JSON.stringify(users));
       }
       var user = users.find(function(u) { return u.email.toLowerCase() === email.toLowerCase() && u.password === password; });
