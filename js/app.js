@@ -801,49 +801,24 @@ function placeOrder() {
   const btn = document.querySelector('.btn-lg[onclick="placeOrder()"]');
   if (btn) { btn.disabled = true; btn.textContent = 'Enviando pedido...'; }
 
-  const body = new URLSearchParams({
-    'form-name': 'pedido-tutty',
-    'pedido-numero': orderNumber,
-    'cliente-nome': currentUser ? currentUser.name : '',
-    'cliente-email': currentUser ? currentUser.email : '',
-    'cliente-empresa': currentUser ? currentUser.company : '',
-    'cliente-cnpj': fullUser.cnpj || '',
-    'itens': itensDesc,
-    'valor-total': formatPrice(total),
-    'forma-pagamento': paymentMethod,
-    'data': new Date().toLocaleDateString('pt-BR')
-  });
-
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body.toString()
-  })
-  .then(function(res) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Confirmar Pedido'; }
-    if (res.ok) {
-      const modal = document.createElement('div');
-      modal.className = 'modal-overlay';
-      modal.innerHTML = `
-        <div class="modal">
-          <span class="material-icons-outlined" style="color: var(--green)">check_circle</span>
-          <h2>Pedido Enviado!</h2>
-          <p>Seu pedido <strong>#${orderNumber}</strong> no valor de <strong>${formatPrice(total)}</strong> foi recebido com sucesso. Você receberá uma confirmação por e-mail.</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove(); cart = []; updateCartUI(); showPage('orders');">Ver Meus Pedidos</button>
-            <button class="btn btn-outline" onclick="this.closest('.modal-overlay').remove(); cart = []; updateCartUI(); showPage('home');">Voltar à Loja</button>
-          </div>
+  // Pedido registrado localmente (integração backend em breve)
+  if (btn) { btn.disabled = false; btn.textContent = 'Confirmar Pedido'; }
+  {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal">
+        <span class="material-icons-outlined" style="color: var(--green)">check_circle</span>
+        <h2>Pedido Enviado!</h2>
+        <p>Seu pedido <strong>#${orderNumber}</strong> no valor de <strong>${formatPrice(total)}</strong> foi recebido com sucesso. Você receberá uma confirmação por e-mail.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove(); cart = []; updateCartUI(); showPage('orders');">Ver Meus Pedidos</button>
+          <button class="btn btn-outline" onclick="this.closest('.modal-overlay').remove(); cart = []; updateCartUI(); showPage('home');">Voltar à Loja</button>
         </div>
-      `;
-      document.body.appendChild(modal);
-    } else {
-      showDemoModal('Erro no Pedido', 'Não foi possível enviar o pedido. Tente novamente ou entre em contato pelo WhatsApp: <a href="https://wa.me/5518981544334" target="_blank">(18) 98154-4334</a> ou e-mail: comercial@tuttysucos.com.br');
-    }
-  })
-  .catch(function() {
-    if (btn) { btn.disabled = false; btn.textContent = 'Confirmar Pedido'; }
-    showDemoModal('Erro de Conexão', 'Verifique sua internet e tente novamente. Ou entre em contato pelo WhatsApp: <a href="https://wa.me/5518981544334" target="_blank">(18) 98154-4334</a>');
-  });
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
 }
 
 // --- Orders ---
@@ -1385,35 +1360,20 @@ function requestEquipment() {
   const users = getUsers();
   const fullUser = users.find(u => u.email === currentUser.email) || {};
 
-  const body = new URLSearchParams({
-    'form-name': 'equipment-request',
-    'nome': currentUser.name || '',
-    'email': currentUser.email || '',
-    'empresa': currentUser.company || '',
-    'cnpj': fullUser.cnpj || '',
-    'telefone': fullUser.phone || '',
-    'mensagem': 'Solicitação de equipamento em comodato — ' + new Date().toLocaleDateString('pt-BR')
-  });
+  // Solicitação registrada localmente (integração backend em breve)
+  btn.disabled = false;
+  btn.textContent = originalText;
 
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: body.toString()
-  })
-  .then(function(res) {
-    btn.disabled = false;
-    btn.textContent = originalText;
-    if (res.ok) {
-      showDemoModal('Solicitação Enviada!', 'Sua solicitação de equipamento em comodato foi registrada com sucesso. Nossa equipe comercial entrará em contato em até 48 horas úteis para avaliar sua operação e disponibilidade.');
-    } else {
-      showDemoModal('Erro ao Enviar', 'Não foi possível enviar sua solicitação. Tente novamente ou entre em contato pelo WhatsApp: <a href="https://wa.me/5518981544334" target="_blank">(18) 98154-4334</a> ou e-mail: comercial@tuttysucos.com.br');
-    }
-  })
-  .catch(function() {
-    btn.disabled = false;
-    btn.textContent = originalText;
-    showDemoModal('Erro de Conexão', 'Verifique sua internet e tente novamente. Ou entre em contato pelo WhatsApp: <a href="https://wa.me/5518981544334" target="_blank">(18) 98154-4334</a>');
-  });
+  // Redireciona para WhatsApp com os dados da solicitação
+  const waLines = [
+    'Olá! Solicito equipamento em comodato:',
+    'Nome: ' + (currentUser.name || ''),
+    'Empresa: ' + (currentUser.company || ''),
+    'E-mail: ' + (currentUser.email || ''),
+    'Data: ' + new Date().toLocaleDateString('pt-BR')
+  ];
+  const waMsg = encodeURIComponent(waLines.join('\n'));
+  showDemoModal('Solicitação Enviada!', 'Sua solicitação de equipamento em comodato foi registrada. Nossa equipe comercial entrará em contato em até 48 horas úteis.<br><br><a href="https://wa.me/5518981544334?text=' + waMsg + '" target="_blank" rel="noopener" style="color:#25d366;font-weight:600;">Confirmar via WhatsApp</a>');
 }
 
 function saveCompanyData(event) {

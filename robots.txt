@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghsodredearaujo-eng.github.io/loja-virtual-tutty/sitemap.xml

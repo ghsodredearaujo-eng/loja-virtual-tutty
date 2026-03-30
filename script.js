@@ -268,34 +268,58 @@ function validateForm(formEl) {
 }
 
 /* ═══════════════════════════════════════════════════
-   FORM SUBMISSION — Netlify Forms
+   FORM SUBMISSION — WhatsApp fallback (Netlify removido)
    ═══════════════════════════════════════════════════ */
 function submitNetlifyForm(formEl, successMsg) {
   if (!validateForm(formEl)) return;
-  var data = new URLSearchParams(new FormData(formEl));
 
-  var btn = formEl.querySelector('button[type="submit"]');
-  var originalText = btn ? btn.textContent : '';
-  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
-
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: data.toString()
-  })
-  .then(function(res) {
-    if (btn) { btn.disabled = false; btn.textContent = originalText; }
-    if (res.ok) {
-      showModal('Enviado com Sucesso! ✓', successMsg || 'Recebemos suas informações. Entraremos em contato em breve.');
-      formEl.reset();
-    } else {
-      showModal('Erro ao enviar', 'Tente novamente ou entre em contato pelo WhatsApp: (18) 98154-4334');
+  // Coleta dados do formulário para montar mensagem de WhatsApp
+  var formData = new FormData(formEl);
+  var lines = ['Olá! Segue minha solicitação:'];
+  formData.forEach(function(value, key) {
+    if (key !== 'bot-field' && value) {
+      lines.push(key + ': ' + value);
     }
-  })
-  .catch(function() {
-    if (btn) { btn.disabled = false; btn.textContent = originalText; }
-    showModal('Erro de Conexão', 'Verifique sua internet e tente novamente.');
   });
+  var whatsappMsg = encodeURIComponent(lines.join('\n'));
+  var whatsappUrl = 'https://wa.me/5518981544334?text=' + whatsappMsg;
+
+  // Exibe modal com botão de WhatsApp
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px';
+
+  var modal = document.createElement('div');
+  modal.style.cssText = 'background:#fff;border-radius:18px;padding:40px;max-width:440px;width:100%;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,0.25)';
+
+  var h2 = document.createElement('h2');
+  h2.style.cssText = 'font-size:1.3rem;color:#1a1a1a;margin-bottom:12px';
+  h2.textContent = 'Formulário recebido ✓';
+
+  var p = document.createElement('p');
+  p.style.cssText = 'font-size:0.95rem;color:#555;line-height:1.6;margin-bottom:24px';
+  p.textContent = (successMsg || 'Recebemos suas informações.') + ' Finalize pelo WhatsApp para que nossa equipe receba sua solicitação.';
+
+  var btnWA = document.createElement('a');
+  btnWA.href = whatsappUrl;
+  btnWA.target = '_blank';
+  btnWA.rel = 'noopener';
+  btnWA.style.cssText = 'display:inline-block;background:#25d366;color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:600;font-size:0.95rem;margin-bottom:12px;font-family:inherit';
+  btnWA.textContent = 'Abrir WhatsApp';
+
+  var btnClose = document.createElement('button');
+  btnClose.style.cssText = 'display:block;margin:0 auto;background:transparent;color:#888;border:none;font-size:0.9rem;cursor:pointer;font-family:inherit;padding:4px 0';
+  btnClose.textContent = 'Fechar';
+  btnClose.addEventListener('click', function() { overlay.remove(); });
+
+  modal.appendChild(h2);
+  modal.appendChild(p);
+  modal.appendChild(btnWA);
+  modal.appendChild(btnClose);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+
+  formEl.reset();
 }
 
 /* ═══════════════════════════════════════════════════
